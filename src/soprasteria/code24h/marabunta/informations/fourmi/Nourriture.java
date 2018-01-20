@@ -30,6 +30,10 @@ public class Nourriture {
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
+
 	
+	public String toString() {
+		return "Nourriture (id: " + id + ", zone: " + zone +", dist: " + dist + ", amount: " + amount + ")";
+	}
 	
 }
