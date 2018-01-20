@@ -29,9 +29,9 @@ public class Main {
             List<String> cmds = tr.readAll();
             
             // affichage pour debug
-//			for(String commandes : cmds) {
-//				System.out.println("> : " + commandes);
-//			}
+			for(String commandes : cmds) {
+				System.out.println("> : " + commandes);
+			}
 
 			TerminalWriter tw = TerminalWriter.getInstance();
 			
@@ -43,9 +43,10 @@ public class Main {
 //				}
 				
 
-				tw.add("ANT_NEW 0");
-				tw.add("ANT_OUT 0 0 0 0");
-				tw.add("END");
+//				tw.add("ANT_NEW 0");
+//				tw.add("ANT_OUT 0 0 0 0");
+//				tw.add("END");
+				tw.add("(fourmiliere)");
 			} else {
 				Fourmi fourmi = fourmiReader.read(cmds);
 				if(fourmi == null) {
@@ -72,9 +73,9 @@ public class Main {
 			// Envoi de la strategie initiale
 			tw.sendAll();
 //			
-//			if (run > 5) {
-//				tr.notFinished = false;
-//			}
+			if (run > 5) {
+				tr.notFinished = false;
+			}
 			
 		}
 		
