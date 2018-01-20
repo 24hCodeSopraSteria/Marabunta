@@ -1,9 +1,13 @@
 package soprasteria.code24h.marabunta.strategie;
 
+import java.util.List;
 import java.util.Scanner;
+
 import utils.TerminalReader;
 import utils.TerminalWriter;
 import soprasteria.code24h.marabunta.communication.fourmis.ActionsFourmis;
+import soprasteria.code24h.marabunta.informations.fourmiliere.Fourmiliere;
+import soprasteria.code24h.marabunta.readers.fourmiliere.FourmiliereReader;
 
 
 public class Main {
@@ -12,33 +16,44 @@ public class Main {
 		ActionsFourmis actionFourmi = new ActionsFourmis();
 
 		TerminalReader tr = new TerminalReader();
+		FourmiliereReader fourmiliereReader = new FourmiliereReader();
+		
 		int run = 0;
 		
 		while(tr.notFinished)
-		{
-			run++;
-			
-			// Obtention de toutes les commandes d'entree
-			tr.readToEND();
-			
-			for(String commandes : tr.listeDesCommandes) {
-				System.out.println("> " + commandes);
+		{// Obtention de toutes les commandes d'entr�e
+            List<String> cmds = tr.readAll();
+            // affichage pour debug
+//			for(String commandes : tr.listeDesCommandes) {
+//				System.out.println("> : " + commandes);
+//			}
+			Fourmiliere fourmiliere = fourmiliereReader.read(cmds);
+			if(fourmiliere != null) {
+				// TODO strategie fourmilere
+			} else {
+				// TODO read fourmi
+				// TODO strategie fourmie
 			}
 			
-			{// Création de la stratégie initiale : tous est dans tr.listeDesCommandes
-				
-				TerminalWriter tw = new TerminalWriter();
-				
-				// Chargement des commandes à envoyer dans le TerminalWriter
-				
-				tw.add("ANT_NEW 0");
-				tw.add("ANT_OUT 0 100 100 0");
-				tw.add("EXPLORE");
-				tw.add("END");
-				
-				
-				// Envoi de la strategie initiale
-				tw.sendAll();
+			run++;
+			// Création de la strat�gie initiale
+			
+
+			TerminalWriter tw = new TerminalWriter();
+			
+			// Chargement des commandes � envoyer dans le TerminalWriter
+			
+			tw.add("ANT_NEW 0");
+			tw.add("ANT_OUT 0 100 100 0");
+			tw.add("EXPLORE");
+			tw.add("END");
+			
+			
+			// Envoi de la strat�gie initiale
+			tw.sendAll();
+			
+			if (run > 3) {
+				tr.notFinished = false;
 			}
 			
 		}
