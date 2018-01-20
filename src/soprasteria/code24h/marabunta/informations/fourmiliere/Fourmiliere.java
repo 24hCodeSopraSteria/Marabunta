@@ -1,14 +1,21 @@
 package soprasteria.code24h.marabunta.informations.fourmiliere;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
+import soprasteria.code24h.marabunta.informations.fourmi.Fourmi;
 
 public class Fourmiliere {
-	private final byte[] memories;
+	private final short[] memories;
 	private BigInteger stock;
+	private Integer nbFourmis;
+	private List<Fourmi> fourmiIn;
 	
 	public Fourmiliere() {
-		memories = new byte[20];
+		memories = new short[20];
 		stock = BigInteger.ZERO;
+		fourmiIn = new ArrayList<Fourmi>();
 	}
 
 	/**
@@ -21,7 +28,7 @@ public class Fourmiliere {
 	/**
 	 * @return the memories
 	 */
-	public byte[] getMemories() {
+	public short[] getMemories() {
 		return memories;
 	}
 
@@ -30,5 +37,19 @@ public class Fourmiliere {
 	 */
 	public BigInteger getStock() {
 		return stock;
+	}
+	
+	/**
+	 * @return the nbFourmis
+	 */
+	public Integer getNbFourmis() {
+		return nbFourmis;
+	}
+
+	/**
+	 * @param nbFourmis the nbFourmis to set
+	 */
+	public void setNbFourmis(Integer nbFourmis) {
+		this.nbFourmis = nbFourmis;
 	}
 }
