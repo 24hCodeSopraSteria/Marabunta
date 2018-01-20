@@ -45,7 +45,7 @@ public class Main {
 				stratFourmiliere.cogite(fourmiliere);
 			} else {
 				Fourmi fourmi = fourmiReader.read(cmds);
-				System.out.println(": " + fourmi);
+				// System.out.println(": " + fourmi);
 				if(fourmi != null) {
 					// traitement fourmi
 					stratFourmi.cogite(fourmi);
