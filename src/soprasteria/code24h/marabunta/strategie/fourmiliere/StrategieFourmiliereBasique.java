@@ -10,7 +10,10 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 	@Override
 	public List<String> cogite(Fourmiliere elem) {
 		List<String> cmdFourmiliere = new LinkedList<>();
-		// TODO creer et sortir fourmi
+		
+		
+
+
 		return cmdFourmiliere;
 	}
 
