@@ -45,11 +45,17 @@ public class ActionsFourmiliere {
 			throw new RuntimeException();
 		}
 		String str = "";
-		for(int i = 0; i < memory.length; i++) {
+		int i;
+		for(i = 0; i < memory.length; i++) {
 			if(memory[i] > 255 || memory[i] < 0) {
 				throw new RuntimeException();
 			}
 			str += memory[i] + " ";
+		}
+		if(i < 20) {
+			for(;i < 20; i++) {
+				str += "0 ";
+			}
 		}
 		this.tw.add("SET_MEMORY " + str);
 	}
