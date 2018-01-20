@@ -12,8 +12,9 @@ public class TerminalReader {
 	public List<String> readAll() {
 		List<String> listeDesCommandes = new ArrayList<String>();
 		boolean finDeReception = false;
-		while(in.hasNextLine()) {
+		while(in.hasNextLine() && !finDeReception) {
 			String entree = in.nextLine();
+			entree = entree.trim();
 			if (entree.equals("END")) {
 				finDeReception = true;
 			}
