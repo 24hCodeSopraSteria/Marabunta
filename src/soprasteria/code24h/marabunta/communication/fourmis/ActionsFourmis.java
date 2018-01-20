@@ -1,14 +1,19 @@
 package soprasteria.code24h.marabunta.communication.fourmis;
 
+import javax.management.Query;
+
+import utils.TerminalWriter;
+
 public class ActionsFourmis {
 	
+	private TerminalWriter tw = TerminalWriter.getInstance();
 	/**
 	 * Explore le terrain <br>
 	 * Exclusive : oui <br>
 	 * Coût : 1 unité
 	 */
 	public void Explore() {
-		
+		this.tw.add("EXPLORE");
 	}
 	
 	/**
@@ -18,7 +23,7 @@ public class ActionsFourmis {
 	 * @param angle relative (-180 à 180)
 	 */
 	public void Turn(Integer angle) {
-		
+		this.tw.add("TURN " + angle);
 	}
 	
 	/**
@@ -28,7 +33,7 @@ public class ActionsFourmis {
 	 * @param id Identifiant de l'objet indiqué par SEE_PHEROMONE, SEE_FOOD, SEE_ANT ou SEE_NEST
 	 */
 	public void MoveTo(Integer id) {
-		
+		this.tw.add("MOVE_TO " + id);
 	}
 	
 	/**
@@ -38,7 +43,7 @@ public class ActionsFourmis {
 	 * @param type Type de phéromone (0 à 1023)
 	 */
 	public void PutPheromone(Integer type) {
-		
+		this.tw.add("PUT_PHEROMONE " + type);
 	}
 	
 	/**
@@ -50,7 +55,7 @@ public class ActionsFourmis {
 	 * @param type 	Type de phéromone (0 à 1023)
 	 */
 	public void ChangePheromone(Integer id, Integer type) {
-		
+		this.tw.add("CHANGE_PHEROMONE " + type);
 	}
 	
 	/**
@@ -61,7 +66,7 @@ public class ActionsFourmis {
 	 * @param id Identifiant de l'objet indiqué par SEE_PHEROMONE
 	 */
 	public void RechargePheromone(Integer id) {
-		
+		this.tw.add("RECHARGE_PHEROMONE " + id);
 	}
 	
 	/**
@@ -77,7 +82,7 @@ public class ActionsFourmis {
 	 * @param quantity Quantité à prendre (limité par la capacité restante)
 	 */
 	public void Collect(Integer id, Integer quantity) {
-		
+		this.tw.add("COLLECT " + id + " " + quantity);
 	}
 	
 	/**
@@ -89,7 +94,7 @@ public class ActionsFourmis {
 	 * @param quantity 	Quantité à donner
 	 */
 	public void DoTrophallaxis(Integer id, Integer quantity) {
-		
+		this.tw.add("DO_TRAPHALLAXIS " + id + " " + quantity);
 	}
 	
 	/**
@@ -100,7 +105,7 @@ public class ActionsFourmis {
 	 * @param quantity
 	 */
 	public void Eat (Integer quantity) {
-		
+		this.tw.add("EAT " + quantity);
 	}
 	
 	/**
@@ -112,7 +117,7 @@ public class ActionsFourmis {
 	 * @param id
 	 */
 	public void Nest (Integer id) {
-		
+		this.tw.add("NEST " + id);
 	}
 	
 	/**
@@ -159,7 +164,7 @@ public class ActionsFourmis {
 	 * @param force Force appliquée (voir tableau ci-dessus)
 	 */
 	public void attack (Integer id, Integer force) {
-		
+		this.tw.add("ATTACK " + id + " " + force); 
 	}
 	
 	/**
@@ -168,7 +173,7 @@ public class ActionsFourmis {
 	 * Coût : 0 unité
 	 */
 	public void suicide () {
-		
+		this.tw.add("SUICIDE");
 	}
 	
 	/**
@@ -177,9 +182,13 @@ public class ActionsFourmis {
 	 * Coût : 0 unités
 	 * @param m0 Nombre compris entre 0 et 255 inclus.
 	 * @param m1 Nombre compris entre 0 et 255 inclus.
+	 * @throws RuntimeException Si une des deux valeurs est en dehors des bornes
 	 */
-	public void SetMemory(Integer m0, Integer m1) {
-		
+	public void SetMemory(Short m0, Short m1) {
+		if(m0 < 0 || m0 > 255 || m1 < 0 || m1 > 255) {
+			throw new RuntimeException();
+		}
+		this.tw.add("SET_MEMORY " + m0 + " " + m1);
 	}
 
 }

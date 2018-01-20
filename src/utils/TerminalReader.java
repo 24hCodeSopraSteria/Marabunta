@@ -1,5 +1,6 @@
 package utils;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,7 +8,9 @@ import java.util.Scanner;
 public class TerminalReader {
 	public Scanner in = new Scanner(System.in);
 	public boolean notFinished = true;
-	public static TerminalReader me;
+	public static TerminalReader me = null;
+
+	private TerminalReader(){};
 	
 	
 	public List<String> readAll() {
