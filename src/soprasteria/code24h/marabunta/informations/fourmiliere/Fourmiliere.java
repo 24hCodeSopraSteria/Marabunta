@@ -16,6 +16,14 @@ public class Fourmiliere {
 		memories = new short[20];
 		stock = BigInteger.ZERO;
 		fourmiIn = new ArrayList<Fourmi>();
+		nbFourmis = 0;
+	}
+
+	/**
+	 * @return the fourmiIn
+	 */
+	public List<Fourmi> getFourmiIn() {
+		return fourmiIn;
 	}
 
 	/**
