@@ -1,10 +1,10 @@
 package soprasteria.code24h.marabunta.informations.fourmi;
 
 public class Nourriture {
-	public Integer id;
-	public String zone;
-	public Integer dist;
-	public Integer amount;
+	private Integer id;
+	private String zone;
+	private Integer dist;
+	private Integer amount;
 	
 	public Integer getId() {
 		return id;

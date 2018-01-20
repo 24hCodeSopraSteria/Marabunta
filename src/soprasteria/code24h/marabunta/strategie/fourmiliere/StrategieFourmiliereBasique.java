@@ -8,13 +8,8 @@ import soprasteria.code24h.marabunta.informations.fourmiliere.Fourmiliere;
 public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 
 	@Override
-	public List<String> cogite(Fourmiliere elem) {
-		List<String> cmdFourmiliere = new LinkedList<>();
-		
-		
+	public void cogite(Fourmiliere elem) {
 
-
-		return cmdFourmiliere;
 	}
 
 }
