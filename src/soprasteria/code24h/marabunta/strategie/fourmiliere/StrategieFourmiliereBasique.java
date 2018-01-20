@@ -14,6 +14,7 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 	public void cogite(Fourmiliere fourmiliere) {
 		int fourmisInterieur = fourmiliere.getNbFourmis();
 		short fourmisExterieur = fourmiliere.getMemories()[0];
+		System.out.println(": > interieur : " + fourmisInterieur + " exterieur : " + fourmisExterieur);
 		if(fourmisExterieur < 20 && fourmisInterieur > 0) {
 			actionsFourmiliere.SetMemory(++fourmisExterieur);
 			actionsFourmiliere.AntOut(0, 5, (short)0, (short)0);
