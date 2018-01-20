@@ -29,9 +29,9 @@ public class Main {
             List<String> cmds = tr.readAll();
             
             // affichage pour debug
-//			for(String commandes : cmds) {
-//				System.out.println("> : " + commandes);
-//			}
+			for(String commandes : cmds) {
+				System.out.println("> : " + commandes);
+			}
 
 			TerminalWriter tw = TerminalWriter.getInstance();
 			
