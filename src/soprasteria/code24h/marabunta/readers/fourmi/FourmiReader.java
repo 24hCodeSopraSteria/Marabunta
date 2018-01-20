@@ -57,7 +57,7 @@ public class FourmiReader extends MarabuntaReader<Fourmi>{
 				fv.setFriend(cmdEspace[4].equals("FRIEND"));
 				fv.setStamina(Integer.parseInt(cmdEspace[5]));
 				
-				info.fourmisAProximite.add(fv);
+				info.getFourmisAProximite().add(fv);
 				break;
 				
 			case "SEE_NEST":
