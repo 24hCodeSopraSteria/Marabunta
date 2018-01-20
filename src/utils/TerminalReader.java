@@ -12,6 +12,8 @@ public class TerminalReader {
 		while(in.hasNextLine()) {
 			listeDesCommandes.add(in.nextLine());
 		}
+		
+		in.close();
 	}
 	
 }
