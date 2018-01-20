@@ -15,48 +15,65 @@ public class Main {
 	public static void main(String[] args) {
 		ActionsFourmis actionFourmi = new ActionsFourmis();
 
-		TerminalReader tr = new TerminalReader();
+		TerminalReader tr = TerminalReader.getInstance();
 		FourmiliereReader fourmiliereReader = new FourmiliereReader();
 		
 		int run = 0;
 		
 		while(tr.notFinished)
-		{// Obtention de toutes les commandes d'entr�e
+		{
+			// Obtention de toutes les commandes d'entree
             List<String> cmds = tr.readAll();
+            
             // affichage pour debug
-//			for(String commandes : tr.listeDesCommandes) {
+//			for(String commandes : cmds) {
 //				System.out.println("> : " + commandes);
 //			}
-			Fourmiliere fourmiliere = fourmiliereReader.read(cmds);
-			if(fourmiliere != null) {
-				// TODO strategie fourmilere
-			} else {
-				// TODO read fourmi
-				// TODO strategie fourmie
-			}
-			
-			run++;
-			// Création de la strat�gie initiale
-			
 
 			TerminalWriter tw = new TerminalWriter();
 			
-			// Chargement des commandes � envoyer dans le TerminalWriter
-			
-			tw.add("ANT_NEW 0");
-			tw.add("ANT_OUT 0 100 100 0");
-			tw.add("EXPLORE");
-			tw.add("END");
-			
-			
-			// Envoi de la strat�gie initiale
-			tw.sendAll();
-			
-			if (run > 3) {
-				tr.notFinished = false;
+			Fourmiliere fourmiliere = fourmiliereReader.read(cmds);
+			if(fourmiliere != null) {
+				// TODO strategie fourmilere
+//				for(String commandes : cmds) {
+//					System.out.println("> (fourmiliere): " + commandes);
+//				}
+				
+
+				tw.add("ANT_NEW 0");
+				tw.add("ANT_OUT 0 0 0 0");
+				tw.add("END");
+			} else {
+				// TODO read fourmi
+				// TODO strategie fourmie
+//				for(String commandes : cmds) {
+//					System.out.println("> (fourmi): " + commandes);
+//				}
 			}
 			
+			run++;
+			// Création de la strategie initiale
+			
+
+			
+			// Chargement des commandes a envoyer dans le TerminalWriter
+			
+//			tw.add("ANT_NEW 0");
+//			tw.add("ANT_OUT 0 100 100 0");
+//			tw.add("EXPLORE");
+//			tw.add("END");
+			
+			
+			// Envoi de la strategie initiale
+			tw.sendAll();
+//			
+//			if (run > 5) {
+//				tr.notFinished = false;
+//			}
+			
 		}
+		
+		System.out.println("Nombre de run " + run);
 		
 		
 	}
