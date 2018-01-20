@@ -14,6 +14,7 @@ public class ActionsFourmis {
 	 */
 	public void Explore() {
 		this.tw.add("EXPLORE");
+		this.sendActions();
 	}
 	
 	/**
@@ -24,6 +25,7 @@ public class ActionsFourmis {
 	 */
 	public void Turn(Integer angle) {
 		this.tw.add("TURN " + angle);
+		this.sendActions();
 	}
 	
 	/**
@@ -34,6 +36,7 @@ public class ActionsFourmis {
 	 */
 	public void MoveTo(Integer id) {
 		this.tw.add("MOVE_TO " + id);
+		this.sendActions();
 	}
 	
 	/**
@@ -44,6 +47,7 @@ public class ActionsFourmis {
 	 */
 	public void PutPheromone(Integer type) {
 		this.tw.add("PUT_PHEROMONE " + type);
+		this.sendActions();
 	}
 	
 	/**
@@ -56,6 +60,7 @@ public class ActionsFourmis {
 	 */
 	public void ChangePheromone(Integer id, Integer type) {
 		this.tw.add("CHANGE_PHEROMONE " + type);
+		this.sendActions();
 	}
 	
 	/**
@@ -67,6 +72,7 @@ public class ActionsFourmis {
 	 */
 	public void RechargePheromone(Integer id) {
 		this.tw.add("RECHARGE_PHEROMONE " + id);
+		this.sendActions();
 	}
 	
 	/**
@@ -83,6 +89,7 @@ public class ActionsFourmis {
 	 */
 	public void Collect(Integer id, Integer quantity) {
 		this.tw.add("COLLECT " + id + " " + quantity);
+		this.sendActions();
 	}
 	
 	/**
@@ -95,6 +102,7 @@ public class ActionsFourmis {
 	 */
 	public void DoTrophallaxis(Integer id, Integer quantity) {
 		this.tw.add("DO_TRAPHALLAXIS " + id + " " + quantity);
+		this.sendActions();
 	}
 	
 	/**
@@ -106,6 +114,7 @@ public class ActionsFourmis {
 	 */
 	public void Eat (Integer quantity) {
 		this.tw.add("EAT " + quantity);
+		this.sendActions();
 	}
 	
 	/**
@@ -118,6 +127,7 @@ public class ActionsFourmis {
 	 */
 	public void Nest (Integer id) {
 		this.tw.add("NEST " + id);
+		this.sendActions();
 	}
 	
 	/**
@@ -165,11 +175,12 @@ public class ActionsFourmis {
 	 */
 	public void attack (Integer id, Integer force) {
 		this.tw.add("ATTACK " + id + " " + force); 
+		this.sendActions();
 	}
 	
 	/**
 	 * Suicide la fourmi <br>
-	 * Exclusive : non <br>
+	 * Exclusive : non (prévoir appel à sendAction si pas d'autre appel exclusifs)<br> 
 	 * Coût : 0 unité
 	 */
 	public void suicide () {
@@ -178,7 +189,7 @@ public class ActionsFourmis {
 	
 	/**
 	 * Modifie la mémoire de la fourmi<br>
-	 * Exclusive : non<br>
+	 * Exclusive : non (prévoir appel à sendAction si pas d'autre appel exclusifs)<br>
 	 * Coût : 0 unités
 	 * @param m0 Nombre compris entre 0 et 255 inclus.
 	 * @param m1 Nombre compris entre 0 et 255 inclus.
@@ -191,4 +202,7 @@ public class ActionsFourmis {
 		this.tw.add("SET_MEMORY " + m0 + " " + m1);
 	}
 
+	public void sendActions() {
+		this.tw.sendAll();
+	}
 }

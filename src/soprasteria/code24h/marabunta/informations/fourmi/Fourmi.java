@@ -6,15 +6,15 @@ import java.util.List;
 import soprasteria.code24h.marabunta.informations.fourmiliere.Fourmiliere;
 
 public class Fourmi {
-	public Integer type;
-	public Integer[] memoire = {0, 0};
-	public boolean attaquee;
-	public Integer stamina;
-	public Integer stock;
-	public List<Pheromone> pheromonesAProximite;
-	public List<FourmisVues> fourmisAProximite;
-	public List<FourmilieresVues> fourmilliereVoisines;
-	public List<Nourriture> nourritureAProximite;
+	private Integer type;
+	private Integer[] memoire = {0, 0};
+	private boolean attaquee;
+	private Integer stamina;
+	private Integer stock;
+	private List<Pheromone> pheromonesAProximite;
+	private List<FourmisVues> fourmisAProximite;
+	private List<FourmilieresVues> fourmilliereVoisines;
+	private List<Nourriture> nourritureAProximite;
 	
 	public Fourmi() {
 		this.pheromonesAProximite = new ArrayList<Pheromone>();

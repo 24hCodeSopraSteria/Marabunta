@@ -15,6 +15,7 @@ public class ActionsFourmiliere {
 	 */
 	public void AntNew(Integer type) {
 		this.tw.add("ANT_NEW " + type);
+		this.sendActions();
 	}
 	
 	/**
@@ -29,11 +30,12 @@ public class ActionsFourmiliere {
 	 */
 	public void AntOut(Integer type, Integer food, Short m0, Short m1) {
 		this.tw.add("ANT_OUT" + type + " " + food + " " + m0 + " " + m1);
+		this.sendActions();
 	}
 	
 	/**
 	 * Modifie la mémoire de la fourmiliere<br>
-	 * Exclusive : non<br>
+	 * Exclusive : non<br> (prévoir appel à sendActions si pas d'action exclusive)
 	 * Coût : 0
 	 * @param memory... Nombre compris entre 0 et 255 (max 20 parametres)
 	 * @throws RuntimeException Si y'a plus de 20 paramètres de passés ou valeur invalide
@@ -50,5 +52,9 @@ public class ActionsFourmiliere {
 			str += memory[i] + " ";
 		}
 		this.tw.add("SET_MEMORY " + str);
+	}
+
+	public void sendActions() {
+		this.tw.sendAll();
 	}
 }
