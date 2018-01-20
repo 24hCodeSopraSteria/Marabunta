@@ -22,12 +22,12 @@ public class Main {
 //				System.out.println("Reception : " + commandes);
 //			}
 			
-			// Cr√©ation de la strat√©gie initiale
+			// Cr√©ation de la stratÈgie initiale
 			
 
 			TerminalWriter tw = new TerminalWriter();
 			
-			// Chargement des commandes √† envoyer dans le TerminalWriter
+			// Chargement des commandes ‡† envoyer dans le TerminalWriter
 			
 			tw.add("ANT_NEW 0");
 			tw.add("ANT_OUT 0 100 100 0");
@@ -35,7 +35,7 @@ public class Main {
 			tw.add("END");
 			
 			
-			// Envoi de la strat√©gie initiale
+			// Envoi de la stratÈgie initiale
 			tw.sendAll();
 		}
 		
