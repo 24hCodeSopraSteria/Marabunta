@@ -21,7 +21,7 @@ public class TerminalReader {
 			String entree = in.nextLine();
 			entree = entree.trim();
 			
-			if (entree.contains("END")) {
+			if (entree.startsWith("END")) {
 				finDeReception = true;
 			}
 			
