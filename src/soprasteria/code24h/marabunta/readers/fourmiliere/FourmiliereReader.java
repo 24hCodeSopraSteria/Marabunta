@@ -28,7 +28,7 @@ public class FourmiliereReader extends MarabuntaReader<Fourmiliere>{
 				}
 				break;
 			case "ANT_COUNT" :
-				fourmiliere.setNbFourmis(Integer.parseInt(splitCmd[1]));
+				fourmiliere.setNbFourmis(Integer.parseInt(splitCmd[2]));
 				break;
 			case "ANT_IN" :
 				Fourmi f = new Fourmi();
