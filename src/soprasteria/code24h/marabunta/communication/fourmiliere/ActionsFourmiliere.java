@@ -4,7 +4,7 @@ import utils.TerminalWriter;
 
 public class ActionsFourmiliere {
 
-	private TerminalWriter tw = new TerminalWriter();
+	private TerminalWriter tw = TerminalWriter.getInstance();
 	
 	/**
 	 * Crée une nouvelle fourmi dans la fourmiliere <br>

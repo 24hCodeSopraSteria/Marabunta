@@ -6,7 +6,7 @@ import utils.TerminalWriter;
 
 public class ActionsFourmis {
 	
-	private TerminalWriter tw = new TerminalWriter();
+	private TerminalWriter tw = TerminalWriter.getInstance();
 	/**
 	 * Explore le terrain <br>
 	 * Exclusive : oui <br>
