@@ -32,52 +32,18 @@ public class Main {
 			for(String commandes : cmds) {
 				System.out.println("> : " + commandes);
 			}
-
-			TerminalWriter tw = TerminalWriter.getInstance();
 			
 			Fourmiliere fourmiliere = fourmiliereReader.read(cmds);
 			if(fourmiliere != null) {
-				// TODO strategie fourmilere
-//				for(String commandes : cmds) {
-//					System.out.println("> (fourmiliere): " + commandes);
-//				}
-				
-
-//				tw.add("ANT_NEW 0");
-//				tw.add("ANT_OUT 0 0 0 0");
-//				tw.add("END");
-				tw.add("(fourmiliere)");
+				// La fourmiliere est instancié
 			} else {
 				Fourmi fourmi = fourmiReader.read(cmds);
 				if(fourmi != null) {
-					// TODO strategie fourmie
-//				for(String commandes : cmds) {
-//					System.out.println("> (fourmi): " + commandes);
-//				}
-					tw.add("(fourmi)");
+					// TODO : Algorithme fourmi
 				}
 			}
 			
 			run++;
-			// Création de la strategie initiale
-			
-
-			
-			// Chargement des commandes a envoyer dans le TerminalWriter
-			
-//			tw.add("ANT_NEW 0");
-//			tw.add("ANT_OUT 0 100 100 0");
-//			tw.add("EXPLORE");
-//			tw.add("END");
-			
-			
-			// Envoi de la strategie initiale
-			tw.sendAll();
-//			
-//			if (run > 5) {
-//				tr.notFinished = false;
-//			}
-			
 		}
 		
 		System.out.println("Nombre de run " + run);
