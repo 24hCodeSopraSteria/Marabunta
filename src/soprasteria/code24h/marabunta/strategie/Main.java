@@ -49,11 +49,12 @@ public class Main {
 				tw.add("(fourmiliere)");
 			} else {
 				Fourmi fourmi = fourmiReader.read(cmds);
-				if(fourmi == null) {
+				if(fourmi != null) {
 					// TODO strategie fourmie
 //				for(String commandes : cmds) {
 //					System.out.println("> (fourmi): " + commandes);
 //				}
+					tw.add("(fourmi)");
 				}
 			}
 			
