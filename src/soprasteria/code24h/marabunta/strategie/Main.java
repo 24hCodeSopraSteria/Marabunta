@@ -6,7 +6,9 @@ import java.util.Scanner;
 import utils.TerminalReader;
 import utils.TerminalWriter;
 import soprasteria.code24h.marabunta.communication.fourmis.ActionsFourmis;
+import soprasteria.code24h.marabunta.informations.fourmi.Fourmi;
 import soprasteria.code24h.marabunta.informations.fourmiliere.Fourmiliere;
+import soprasteria.code24h.marabunta.readers.fourmi.FourmiReader;
 import soprasteria.code24h.marabunta.readers.fourmiliere.FourmiliereReader;
 
 
@@ -17,6 +19,7 @@ public class Main {
 
 		TerminalReader tr = TerminalReader.getInstance();
 		FourmiliereReader fourmiliereReader = new FourmiliereReader();
+		FourmiReader fourmiReader = new FourmiReader();
 		
 		int run = 0;
 		
@@ -44,11 +47,13 @@ public class Main {
 				tw.add("ANT_OUT 0 0 0 0");
 				tw.add("END");
 			} else {
-				// TODO read fourmi
-				// TODO strategie fourmie
+				Fourmi fourmi = fourmiReader.read(cmds);
+				if(fourmi == null) {
+					// TODO strategie fourmie
 //				for(String commandes : cmds) {
 //					System.out.println("> (fourmi): " + commandes);
 //				}
+				}
 			}
 			
 			run++;
