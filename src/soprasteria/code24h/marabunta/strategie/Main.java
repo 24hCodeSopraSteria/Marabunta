@@ -10,24 +10,30 @@ public class Main {
 
 	public static void main(String[] args) {
 		ActionsFourmis actionFourmi = new ActionsFourmis();
-		System.out.println("Hello world !");
 
 		TerminalReader tr = new TerminalReader();
+		int run = 0;
 		
-		//while(tr.notFinished)
-		{// Obtention de toutes les commandes d'entrée
+		while(tr.notFinished)
+		{
+			run++;
+			
+			// Obtention de toutes les commandes d'entree
 			tr.readAll();
 			
-//			for(String commandes : tr.listeDesCommandes) {
-//				System.out.println("Reception : " + commandes);
-//			}
+			for(String commandes : tr.listeDesCommandes) {
+				System.out.println("> : " + commandes);
+			}
 			
-			// CrÃ©ation de la stratégie initiale
+			// CrÃ©ation de la stratÃ©gie initiale : tous est dans tr.listeDesCommandes
+			
+			
+			// CrÃ©ation de la stratï¿½gie initiale
 			
 
 			TerminalWriter tw = new TerminalWriter();
 			
-			// Chargement des commandes à  envoyer dans le TerminalWriter
+			// Chargement des commandes ï¿½ envoyer dans le TerminalWriter
 			
 			tw.add("ANT_NEW 0");
 			tw.add("ANT_OUT 0 100 100 0");
@@ -35,10 +41,14 @@ public class Main {
 			tw.add("END");
 			
 			
-			// Envoi de la stratégie initiale
+			// Envoi de la stratï¿½gie initiale
 			tw.sendAll();
+			
+			if (run > 3) {
+				tr.notFinished = false;
+			}
+			
 		}
-		
 		
 		
 	}

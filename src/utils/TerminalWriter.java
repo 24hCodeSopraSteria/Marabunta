@@ -7,7 +7,7 @@ public class TerminalWriter {
 	
 	public void sendAll() {
 		for (String commande : commandes) {
-			System.out.println(commande);
+			System.out.println("< " + commande);
 		}
 		System.out.flush();
 	}
