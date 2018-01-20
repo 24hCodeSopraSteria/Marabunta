@@ -2,6 +2,7 @@ package soprasteria.code24h.marabunta.readers.fourmiliere;
 
 import java.math.BigInteger;
 
+import soprasteria.code24h.marabunta.informations.fourmi.Fourmi;
 import soprasteria.code24h.marabunta.informations.fourmiliere.Fourmiliere;
 import soprasteria.code24h.marabunta.readers.MarabuntaReader;
 
@@ -27,8 +28,13 @@ public class FourmiliereReader extends MarabuntaReader<Fourmiliere>{
 				}
 				break;
 			case "ANT_COUNT" :
+				fourmiliere.setNbFourmis(Integer.parseInt(splitCmd[1]));
 				break;
 			case "ANT_IN" :
+				Fourmi f = new Fourmi();
+				f.setType(Integer.parseInt(splitCmd[1]));
+				f.getMemoire()[0] = Integer.parseInt(splitCmd[1]);
+				f.getMemoire()[1] = Integer.parseInt(splitCmd[2]);
 				break;
 			default :
 				// TODO log

@@ -9,6 +9,7 @@ import soprasteria.code24h.marabunta.informations.fourmi.Fourmi;
 public class Fourmiliere {
 	private final short[] memories;
 	private BigInteger stock;
+	private Integer nbFourmis;
 	private List<Fourmi> fourmiIn;
 	
 	public Fourmiliere() {
@@ -36,5 +37,19 @@ public class Fourmiliere {
 	 */
 	public BigInteger getStock() {
 		return stock;
+	}
+	
+	/**
+	 * @return the nbFourmis
+	 */
+	public Integer getNbFourmis() {
+		return nbFourmis;
+	}
+
+	/**
+	 * @param nbFourmis the nbFourmis to set
+	 */
+	public void setNbFourmis(Integer nbFourmis) {
+		this.nbFourmis = nbFourmis;
 	}
 }
