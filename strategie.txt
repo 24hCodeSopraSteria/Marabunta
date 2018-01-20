@@ -1,0 +1,18 @@
+Fourmilière
+
+Si ant_count 0 0 :
+	Si stock > 5 :
+		ant_new 0
+Sinon :
+	ant_out 0 0 0 0
+	
+----------------------------------------------------------	
+
+Fourmis
+	
+Explore
+Si see_food :
+	move_to see_food (id)
+	collect
+Si see_nest :
+	nest
