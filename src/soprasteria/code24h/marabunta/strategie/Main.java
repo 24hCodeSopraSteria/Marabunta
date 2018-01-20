@@ -33,7 +33,7 @@ public class Main {
 //				System.out.println("> : " + commandes);
 //			}
 
-			TerminalWriter tw = new TerminalWriter();
+			TerminalWriter tw = TerminalWriter.getInstance();
 			
 			Fourmiliere fourmiliere = fourmiliereReader.read(cmds);
 			if(fourmiliere != null) {
