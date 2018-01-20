@@ -10,6 +10,10 @@ import soprasteria.code24h.marabunta.informations.fourmi.Fourmi;
 import soprasteria.code24h.marabunta.informations.fourmiliere.Fourmiliere;
 import soprasteria.code24h.marabunta.readers.fourmi.FourmiReader;
 import soprasteria.code24h.marabunta.readers.fourmiliere.FourmiliereReader;
+import soprasteria.code24h.marabunta.strategie.fourmi.StrategieFourmi;
+import soprasteria.code24h.marabunta.strategie.fourmi.StrategieFourmiBasique;
+import soprasteria.code24h.marabunta.strategie.fourmiliere.StrategieFourmiliere;
+import soprasteria.code24h.marabunta.strategie.fourmiliere.StrategieFourmiliereBasique;
 
 
 public class Main {
@@ -20,6 +24,8 @@ public class Main {
 		TerminalReader tr = TerminalReader.getInstance();
 		FourmiliereReader fourmiliereReader = new FourmiliereReader();
 		FourmiReader fourmiReader = new FourmiReader();
+		StrategieFourmiliere stratFourmiliere = new StrategieFourmiliereBasique();
+		StrategieFourmi stratFourmi = new StrategieFourmiBasique();
 		
 		int run = 0;
 		
@@ -36,10 +42,12 @@ public class Main {
 			Fourmiliere fourmiliere = fourmiliereReader.read(cmds);
 			if(fourmiliere != null) {
 				// La fourmiliere est instancié
+				stratFourmiliere.cogite(fourmiliere);
 			} else {
 				Fourmi fourmi = fourmiReader.read(cmds);
 				if(fourmi != null) {
-					// TODO : Algorithme fourmi
+					// traitement fourmi
+					stratFourmi.cogite(fourmi);
 				}
 			}
 			
