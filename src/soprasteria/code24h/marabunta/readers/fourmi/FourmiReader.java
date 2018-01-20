@@ -23,9 +23,10 @@ public class FourmiReader extends MarabuntaReader<Fourmi>{
 			case "ATTACKED":
 				info.setAttaquee(true);
 			case "STAMINA":
-				info.setType(Integer.parseInt(cmdEspace[1]));
+				info.setStamina(Integer.parseInt(cmdEspace[1]));
 				break;
 			case "STOCK":
+				info.setStock(Integer.parseInt(cmdEspace[1]));
 				break;
 			case "SEE_PHEROMONE":
 				break;
