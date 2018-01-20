@@ -9,27 +9,35 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("Hello world !");
-		
-		// Obtention de toutes les commandes d'entrée
+
 		TerminalReader tr = new TerminalReader();
-		tr.readAll();
 		
-		for(String commandes : tr.listeDesCommandes) {
-			System.out.println("Reception : " + commandes);
+		//while(tr.notFinished)
+		{// Obtention de toutes les commandes d'entrée
+			tr.readAll();
+			
+			for(String commandes : tr.listeDesCommandes) {
+				System.out.println("Reception : " + commandes);
+			}
+			
+			// Création de la stratégie initiale
+			
+
+			TerminalWriter tw = new TerminalWriter();
+			
+			// Chargement des commandes à envoyer dans le TerminalWriter
+			
+			tw.add("ANT_NEW 0");
+			tw.add("ANT_OUT 0 100 100 0");
+			tw.add("EXPLORE");
+			tw.add("END");
+			
+			
+			// Envoi de la stratégie initiale
+			tw.sendAll();
 		}
 		
-		// Création de la stratégie initiale
 		
-
-		TerminalWriter tw = new TerminalWriter();
-		
-		// Chargement des commandes à envoyer dans le TerminalWriter
-		tw.add("Salut");
-		tw.add("huhuhut");
-		
-		
-		// Envoi de la stratégie initiale
-		tw.sendAll();
 		
 	}
 

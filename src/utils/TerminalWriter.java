@@ -9,6 +9,7 @@ public class TerminalWriter {
 		for (String commande : commandes) {
 			System.out.println(commande);
 		}
+		System.out.flush();
 	}
 	
 	public void add(String ajout) {
