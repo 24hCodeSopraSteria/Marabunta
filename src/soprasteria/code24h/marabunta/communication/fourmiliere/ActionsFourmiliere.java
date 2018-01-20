@@ -29,7 +29,7 @@ public class ActionsFourmiliere {
 	 * @param m1 Mémoire initiale de la fourmi. (0-255)
 	 */
 	public void AntOut(Integer type, Integer food, Short m0, Short m1) {
-		this.tw.add("ANT_OUT" + type + " " + food + " " + m0 + " " + m1);
+		this.tw.add("ANT_OUT " + type + " " + food + " " + m0 + " " + m1);
 		this.sendActions();
 	}
 	
