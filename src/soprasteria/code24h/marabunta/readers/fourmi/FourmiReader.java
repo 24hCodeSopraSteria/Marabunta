@@ -57,15 +57,15 @@ public class FourmiReader extends MarabuntaReader<Fourmi>{
 				fv.setFriend(cmdEspace[4].equals("FRIEND"));
 				fv.setStamina(Integer.parseInt(cmdEspace[5]));
 				
-				info.fourmisAProximite.add(fv);
+				info.getFourmisAProximite().add(fv);
 				break;
 				
 			case "SEE_NEST":
 				FourmilieresVues fmv = new FourmilieresVues();
-				fmv.setId(Integer.parseInt(cmdEspace[2]));
-				fmv.setZone(Integer.parseInt(cmdEspace[3]));
-				fmv.setDist(Integer.parseInt(cmdEspace[4]));
-				fmv.setFriend(cmdEspace[5].equals("FRIEND"));
+				fmv.setId(Integer.parseInt(cmdEspace[1]));
+				fmv.setZone(cmdEspace[2]);
+				fmv.setDist(Integer.parseInt(cmdEspace[3]));
+				fmv.setFriend(cmdEspace[4].equals("FRIEND"));
 				
 				info.getFourmilliereVoisines().add(fmv);
 				
@@ -73,10 +73,10 @@ public class FourmiReader extends MarabuntaReader<Fourmi>{
 				
 			case "SEE_FOOD":
 				Nourriture nr = new Nourriture();
-				nr.setId(Integer.parseInt(cmdEspace[2]));
-				nr.setZone(cmdEspace[3]);
-				nr.setDist(Integer.parseInt(cmdEspace[4]));
-				nr.setAmount(Integer.parseInt(cmdEspace[5]));
+				nr.setId(Integer.parseInt(cmdEspace[1]));
+				nr.setZone(cmdEspace[2]);
+				nr.setDist(Integer.parseInt(cmdEspace[3]));
+				nr.setAmount(Integer.parseInt(cmdEspace[4]));
 				
 				info.getNourritureAProximite().add(nr);
 				

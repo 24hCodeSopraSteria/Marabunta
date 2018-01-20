@@ -10,6 +10,10 @@ import soprasteria.code24h.marabunta.informations.fourmi.Fourmi;
 import soprasteria.code24h.marabunta.informations.fourmiliere.Fourmiliere;
 import soprasteria.code24h.marabunta.readers.fourmi.FourmiReader;
 import soprasteria.code24h.marabunta.readers.fourmiliere.FourmiliereReader;
+import soprasteria.code24h.marabunta.strategie.fourmi.StrategieFourmi;
+import soprasteria.code24h.marabunta.strategie.fourmi.StrategieFourmiBasique;
+import soprasteria.code24h.marabunta.strategie.fourmiliere.StrategieFourmiliere;
+import soprasteria.code24h.marabunta.strategie.fourmiliere.StrategieFourmiliereBasique;
 
 
 public class Main {
@@ -20,6 +24,8 @@ public class Main {
 		TerminalReader tr = TerminalReader.getInstance();
 		FourmiliereReader fourmiliereReader = new FourmiliereReader();
 		FourmiReader fourmiReader = new FourmiReader();
+		StrategieFourmiliere stratFourmiliere = new StrategieFourmiliereBasique();
+		StrategieFourmi stratFourmi = new StrategieFourmiBasique();
 		
 		int run = 0;
 		
@@ -30,23 +36,27 @@ public class Main {
             
             // affichage pour debug
 			for(String commandes : cmds) {
-				System.out.println("> : " + commandes);
+				System.out.println(": > " + commandes);
 			}
 			
 			Fourmiliere fourmiliere = fourmiliereReader.read(cmds);
 			if(fourmiliere != null) {
 				// La fourmiliere est instancié
+				System.out.println(": > " + fourmiliere.getStock());
+				System.out.println(": > " + fourmiliere.getMemories()[0]);
+				System.out.println(": > " + fourmiliere.getNbFourmis());
+				stratFourmiliere.cogite(fourmiliere);
 			} else {
 				Fourmi fourmi = fourmiReader.read(cmds);
+				System.out.println(": " + fourmi);
 				if(fourmi != null) {
-					// TODO : Algorithme fourmi
+					// traitement fourmi
+					stratFourmi.cogite(fourmi);
 				}
 			}
 			
 			run++;
 		}
-		
-		System.out.println("Nombre de run " + run);
 		
 		
 	}

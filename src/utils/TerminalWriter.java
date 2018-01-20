@@ -11,8 +11,9 @@ public class TerminalWriter {
 
 	public void sendAll() {
 		for (String commande : commandes) {
-			System.out.println("< " + commande);
+			System.out.print(commande + "\n");
 		}
+		System.out.print("END\n");
 		System.out.flush();
 		commandes = new ArrayList<String>();
 	}

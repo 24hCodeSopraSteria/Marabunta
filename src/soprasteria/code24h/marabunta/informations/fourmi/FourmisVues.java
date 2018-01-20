@@ -6,6 +6,7 @@ public class FourmisVues {
 	public Integer dist;
 	public boolean friend;
 	public Integer stamina;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -36,6 +37,10 @@ public class FourmisVues {
 	public void setStamina(Integer stamina) {
 		this.stamina = stamina;
 	}
+
 	
+	public String toString() {
+		return "FourmisVues (id: " + id + ", zone: " + zone +", dist: " + dist + ", friend: " + friend + ", stamina: " + stamina + ")";
+	}
 	
 }
