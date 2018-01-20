@@ -42,6 +42,9 @@ public class Main {
 			Fourmiliere fourmiliere = fourmiliereReader.read(cmds);
 			if(fourmiliere != null) {
 				// La fourmiliere est instancié
+				System.out.println(": > " + fourmiliere.getStock());
+				System.out.println(": > " + fourmiliere.getMemories());
+				System.out.println(": > " + fourmiliere.getNbFourmis());
 				stratFourmiliere.cogite(fourmiliere);
 			} else {
 				Fourmi fourmi = fourmiReader.read(cmds);
