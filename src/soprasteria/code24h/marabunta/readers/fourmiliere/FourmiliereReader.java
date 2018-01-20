@@ -24,7 +24,7 @@ public class FourmiliereReader extends MarabuntaReader<Fourmiliere>{
 				break;
 			case "MEMORY" :
 				for(int i = 1; i < splitCmd.length; i++) {
-					fourmiliere.getMemories()[i -1] = Short.parseShort(splitCmd[i]);
+					fourmiliere.getMemories()[i -1] = Integer.parseInt(splitCmd[i]);
 				}
 				break;
 			case "ANT_COUNT" :

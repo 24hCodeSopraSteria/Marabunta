@@ -40,7 +40,7 @@ public class ActionsFourmiliere {
 	 * @param memory... Nombre compris entre 0 et 255 (max 20 parametres)
 	 * @throws RuntimeException Si y'a plus de 20 paramètres de passés ou valeur invalide
 	 */
-	public void SetMemory(Short... memory) {
+	public void SetMemory(Integer... memory) {
 		if(memory.length > 20) {
 			throw new RuntimeException();
 		}

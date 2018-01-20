@@ -7,13 +7,13 @@ import java.util.List;
 import soprasteria.code24h.marabunta.informations.fourmi.Fourmi;
 
 public class Fourmiliere {
-	private final short[] memories;
+	private final Integer[] memories;
 	private BigInteger stock;
 	private Integer nbFourmis;
 	private List<Fourmi> fourmiIn;
 	
 	public Fourmiliere() {
-		memories = new short[20];
+		memories = new Integer[20];
 		stock = BigInteger.ZERO;
 		fourmiIn = new ArrayList<Fourmi>();
 		nbFourmis = 0;
@@ -36,7 +36,7 @@ public class Fourmiliere {
 	/**
 	 * @return the memories
 	 */
-	public short[] getMemories() {
+	public Integer[] getMemories() {
 		return memories;
 	}
 
