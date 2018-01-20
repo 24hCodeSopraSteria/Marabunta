@@ -16,9 +16,9 @@ public class Main {
 		{// Obtention de toutes les commandes d'entrée
 			tr.readAll();
 			
-			for(String commandes : tr.listeDesCommandes) {
-				System.out.println("Reception : " + commandes);
-			}
+//			for(String commandes : tr.listeDesCommandes) {
+//				System.out.println("Reception : " + commandes);
+//			}
 			
 			// Création de la stratégie initiale
 			
