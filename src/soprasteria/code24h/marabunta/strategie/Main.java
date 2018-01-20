@@ -43,16 +43,18 @@ public class Main {
 //				}
 				
 
-				tw.add("ANT_NEW 0");
-				tw.add("ANT_OUT 0 0 0 0");
-				tw.add("END");
+//				tw.add("ANT_NEW 0");
+//				tw.add("ANT_OUT 0 0 0 0");
+//				tw.add("END");
+				tw.add("(fourmiliere)");
 			} else {
 				Fourmi fourmi = fourmiReader.read(cmds);
-				if(fourmi == null) {
+				if(fourmi != null) {
 					// TODO strategie fourmie
 //				for(String commandes : cmds) {
 //					System.out.println("> (fourmi): " + commandes);
 //				}
+					tw.add("(fourmi)");
 				}
 			}
 			

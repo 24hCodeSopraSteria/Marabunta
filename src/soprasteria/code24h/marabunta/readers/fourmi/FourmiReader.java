@@ -7,13 +7,38 @@ public class FourmiReader extends MarabuntaReader<Fourmi>{
 
 	public FourmiReader() {
 		super("BEGIN ANT");
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void parseTo(String cmd, Fourmi info) {
-		// TODO Auto-generated method stub
+		String[] cmdEspace = cmd.split("\\s+");
 		
+		switch(cmdEspace[0]) {
+			case "TYPE":
+				info.setType(Integer.parseInt(cmdEspace[1]));
+				break;
+			case "MEMORY":
+				info.setMemoire(new Integer[] { Integer.parseInt(cmdEspace[1]), Integer.parseInt(cmdEspace[2]) });
+				break;
+			case "ATTACKED":
+				info.setAttaquee(true);
+			case "STAMINA":
+				info.setType(Integer.parseInt(cmdEspace[1]));
+				break;
+			case "STOCK":
+				break;
+			case "SEE_PHEROMONE":
+				break;
+			case "SEE_ANT": 
+				break;
+			case "SEE_NEST":
+				break;
+			case "SEE_FOOD":
+				break;
+			default:
+				break;
+				
+		}
 	}
 
 	@Override
