@@ -15,7 +15,7 @@ public class Main {
 	public static void main(String[] args) {
 		ActionsFourmis actionFourmi = new ActionsFourmis();
 
-		TerminalReader tr = new TerminalReader();
+		TerminalReader tr = TerminalReader.getInstance();
 		FourmiliereReader fourmiliereReader = new FourmiliereReader();
 		
 		int run = 0;
@@ -29,13 +29,20 @@ public class Main {
 //			for(String commandes : cmds) {
 //				System.out.println("> : " + commandes);
 //			}
-            
+
+			TerminalWriter tw = new TerminalWriter();
+			
 			Fourmiliere fourmiliere = fourmiliereReader.read(cmds);
 			if(fourmiliere != null) {
 				// TODO strategie fourmilere
 //				for(String commandes : cmds) {
 //					System.out.println("> (fourmiliere): " + commandes);
 //				}
+				
+
+				tw.add("ANT_NEW 0");
+				tw.add("ANT_OUT 0 0 0 0");
+				tw.add("END");
 			} else {
 				// TODO read fourmi
 				// TODO strategie fourmie
@@ -48,7 +55,6 @@ public class Main {
 			// Création de la strategie initiale
 			
 
-			TerminalWriter tw = new TerminalWriter();
 			
 			// Chargement des commandes a envoyer dans le TerminalWriter
 			

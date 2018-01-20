@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class TerminalReader {
 	public Scanner in = new Scanner(System.in);
 	public boolean notFinished = true;
+	public static TerminalReader me;
 	
 	
 	public List<String> readAll() {
@@ -27,5 +28,14 @@ public class TerminalReader {
 		}
 		return listeDesCommandes;
 	}
+
+
+	public static TerminalReader getInstance() {
+		if (TerminalReader.me == null) {
+			me = new TerminalReader();
+		}
+		return me;
+	}
+	
 	
 }
