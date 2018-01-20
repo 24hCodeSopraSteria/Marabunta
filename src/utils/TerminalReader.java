@@ -1,15 +1,16 @@
 package utils;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TerminalReader {
 	public Scanner in = new Scanner(System.in);
-	public ArrayList<String> listeDesCommandes = new ArrayList<String>();
 	public boolean notFinished = true;
 	
 	
-	public void readAll() {
+	public List<String> readAll() {
+		List<String> listeDesCommandes = new ArrayList<String>();
 		boolean finDeReception = false;
 		while(in.hasNextLine()) {
 			String entree = in.nextLine();
@@ -18,7 +19,7 @@ public class TerminalReader {
 			}
 			listeDesCommandes.add(entree);
 		}
-		
+		return listeDesCommandes;
 	}
 	
 }
