@@ -17,6 +17,10 @@ public class Fourmi {
 	private List<Nourriture> nourritureAProximite;
 	
 	public Fourmi() {
+		type = 0;
+		attaquee = false;
+		stamina = 0;
+		stock = 0;
 		this.pheromonesAProximite = new ArrayList<Pheromone>();
 		this.fourmisAProximite = new ArrayList<FourmisVues>();
 		this.fourmilliereVoisines = new ArrayList<FourmilieresVues>();
@@ -78,5 +82,9 @@ public class Fourmi {
 	 */
 	public List<FourmisVues> getFourmisAProximite() {
 		return fourmisAProximite;
+	}
+	
+	public String toString() {
+		return "Fourmi (type: " + type + ", memoire: " + memoire[0] + ", " + memoire[1] + ", attaquee: " + attaquee + ", stamina: " + stamina + ", stock: " + stock + ", pheromonesAProximite: " + pheromonesAProximite + ", fourmisAProximite: " + fourmisAProximite + ", fourmilliereVoisines: " + fourmilliereVoisines + ", nourritureAProximite: " + nourritureAProximite + ")";
 	}
 }
