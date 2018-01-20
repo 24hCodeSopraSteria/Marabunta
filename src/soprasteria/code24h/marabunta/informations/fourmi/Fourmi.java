@@ -73,5 +73,10 @@ public class Fourmi {
 	public void setNourritureAProximite(List<Nourriture> nourritureAProximite) {
 		this.nourritureAProximite = nourritureAProximite;
 	}
-	
+	/**
+	 * @return the fourmisAProximite
+	 */
+	public List<FourmisVues> getFourmisAProximite() {
+		return fourmisAProximite;
+	}
 }
