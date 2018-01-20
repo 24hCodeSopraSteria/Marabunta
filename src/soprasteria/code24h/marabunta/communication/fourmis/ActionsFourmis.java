@@ -5,17 +5,17 @@ public class ActionsFourmis {
 	/**
 	 * Explore le terrain <br>
 	 * Exclusive : oui <br>
-	 * Coût : 1 unité
+	 * CoÃ»t : 1 unitÃ©
 	 */
 	public void Explore() {
 		
 	}
 	
 	/**
-	 * Tourne sur soi-même <br>
+	 * Tourne sur soi-mÃªme <br>
 	 * Exclusive : oui <br>
-	 * Coût : 1 unité <br>
-	 * @param angle relative (-180 à 180)
+	 * CoÃ»t : 1 unitÃ© <br>
+	 * @param angle relative (-180 Ã  180)
 	 */
 	public void Turn(Integer angle) {
 		
@@ -24,41 +24,41 @@ public class ActionsFourmis {
 	/**
 	 * Se dirige vers un objet visible <br>
 	 * Exclusive : oui <br>
-	 * Coût : 2 unité <br>
-	 * @param id Identifiant de l’objet indiqué par SEE_PHEROMONE, SEE_FOOD, SEE_ANT ou SEE_NEST
+	 * CoÃ»t : 2 unitÃ© <br>
+	 * @param id Identifiant de lÂ’objet indiquÃ© par SEE_PHEROMONE, SEE_FOOD, SEE_ANT ou SEE_NEST
 	 */
 	public void MoveTo(Integer id) {
 		
 	}
 	
 	/**
-	 * Dépose une nouvelle phéromone <br>
+	 * DÃ©pose une nouvelle phÃ©romone <br>
 	 * Exclusive : oui <br>
-	 * Coût : 3 unité <br>
-	 * @param type Type de phéromone (0 à 1023)
+	 * CoÃ»t : 3 unitÃ© <br>
+	 * @param type Type de phÃ©romone (0 Ã  1023)
 	 */
 	public void PutPheromone(Integer type) {
 		
 	}
 	
 	/**
-	 * Modifie le type d’une phéromone existante. <br>
-	 * La phéromone doit être dans le champ d’action (NEAR). Elle n’est pas rechargée à cette occasion. <br>
+	 * Modifie le type dÂ’une phÃ©romone existante. <br>
+	 * La phÃ©romone doit Ãªtre dans le champ dÂ’action (NEAR). Elle nÂ’est pas rechargÃ©e Ã  cette occasion. <br>
 	 * Exclusive : oui <br>
-	 * Coût : 2 unités <br>
-	 * @param id Identifiant de l’objet indiqué par SEE_PHEROMONE
-	 * @param type 	Type de phéromone (0 à 1023)
+	 * CoÃ»t : 2 unitÃ©s <br>
+	 * @param id Identifiant de lÂ’objet indiquÃ© par SEE_PHEROMONE
+	 * @param type 	Type de phÃ©romone (0 Ã  1023)
 	 */
 	public void ChangePheromone(Integer id, Integer type) {
 		
 	}
 	
 	/**
-	 * Recharge une phéromone existante. <br>
-	 * La phéromone doit être dans le champ d’action (NEAR). <br>
+	 * Recharge une phÃ©romone existante. <br>
+	 * La phÃ©romone doit Ãªtre dans le champ dÂ’action (NEAR). <br>
 	 * Exclusive : oui <br>
-	 * Coût : 1 <br>
-	 * @param id Identifiant de l’objet indiqué par SEE_PHEROMONE
+	 * CoÃ»t : 1 <br>
+	 * @param id Identifiant de lÂ’objet indiquÃ© par SEE_PHEROMONE
 	 */
 	public void RechargePheromone(Integer id) {
 		
@@ -66,15 +66,15 @@ public class ActionsFourmis {
 	
 	/**
 	 * Collecte de la nourriture. <br>
-	 * La source de nourriture doit être dans le champ d’action (NEAR). La quantité effectivement collectée est le minimum entre : <br>
-	 *     - la quantité demandée,<br>
-	 *     - la quantité restante dans la source de nourriture,<br>
+	 * La source de nourriture doit Ãªtre dans le champ dÂ’action (NEAR). La quantitÃ© effectivement collectÃ©e est le minimum entre : <br>
+	 *     - la quantitÃ© demandÃ©e,<br>
+	 *     - la quantitÃ© restante dans la source de nourriture,<br>
 	 *     - ce que peut encore collecter la fourmi.<br>
-	 * N’oubliez pas que certaines sources de nourriture peuvent se tarir si la totalité de leurs ressources est consommée.<br>
+	 * NÂ’oubliez pas que certaines sources de nourriture peuvent se tarir si la totalitÃ© de leurs ressources est consommÃ©e.<br>
 	 * Exclusive : oui <br>
-	 * Coût : 4 unités 
-	 * @param id Identifiant de l’objet indiqué par SEE_FOOD
-	 * @param quantity Quantité à prendre (limité par la capacité restante)
+	 * CoÃ»t : 4 unitÃ©s 
+	 * @param id Identifiant de lÂ’objet indiquÃ© par SEE_FOOD
+	 * @param quantity QuantitÃ© Ã  prendre (limitÃ© par la capacitÃ© restante)
 	 */
 	public void Collect(Integer id, Integer quantity) {
 		
@@ -82,11 +82,11 @@ public class ActionsFourmis {
 	
 	/**
 	 * Effectue une trophallaxie avec une autre fourmi. <br>
-     * La fourmi avec qui l’échange est fait doit être dans le champ d’action (NEAR). La fourmi effectuant l’action perd du stock de nourriture, la fourmi qui reçoit l’action en gagne. Si l’échange contient plus de quantité que la fourmi ne peut en recevoir, l’excédant est perdu.<br>
+     * La fourmi avec qui lÂ’Ã©change est fait doit Ãªtre dans le champ dÂ’action (NEAR). La fourmi effectuant lÂ’action perd du stock de nourriture, la fourmi qui reÃ§oit lÂ’action en gagne. Si lÂ’Ã©change contient plus de quantitÃ© que la fourmi ne peut en recevoir, lÂ’excÃ©dant est perdu.<br>
      * Exclusive : oui<br>
-     * Coût : égal à quantity
-	 * @param id Identifiant de l’objet indiqué par SEE_ANT
-	 * @param quantity 	Quantité à donner
+     * CoÃ»t : Ã©gal Ã  quantity
+	 * @param id Identifiant de lÂ’objet indiquÃ© par SEE_ANT
+	 * @param quantity 	QuantitÃ© Ã  donner
 	 */
 	public void DoTrophallaxis(Integer id, Integer quantity) {
 		
@@ -94,9 +94,9 @@ public class ActionsFourmis {
 	
 	/**
 	 * Mange<br>
-	 * Regenere 10x quantity unités de stamina dans la limite des capacités de la fourmi<br>
+	 * Regenere 10x quantity unitÃ©s de stamina dans la limite des capacitÃ©s de la fourmi<br>
 	 * Exclusive : oui<br>
-	 * Coût : égal à quantity
+	 * CoÃ»t : Ã©gal Ã  quantity
 	 * @param quantity
 	 */
 	public void Eat (Integer quantity) {
@@ -104,11 +104,11 @@ public class ActionsFourmis {
 	}
 	
 	/**
-	 * Rentre dans la fourmilière <br>
-	 * La fourmilière doit être dans le champ d’action (NEAR) et être de la même équipe que la fourmi.<br>
-	 * La mémoire et le stock de nourriture sont transférés à la fourmilière.<br>
+	 * Rentre dans la fourmiliÃ¨re <br>
+	 * La fourmiliÃ¨re doit Ãªtre dans le champ dÂ’action (NEAR) et Ãªtre de la mÃªme Ã©quipe que la fourmi.<br>
+	 * La mÃ©moire et le stock de nourriture sont transfÃ©rÃ©s Ã  la fourmiliÃ¨re.<br>
 	 * Exclusive : oui<br>
-	 * Coût : 2 unités
+	 * CoÃ»t : 2 unitÃ©s
 	 * @param id
 	 */
 	public void Nest (Integer id) {
@@ -117,9 +117,9 @@ public class ActionsFourmis {
 	
 	/**
 	 * Attaque une autre fourmi.<br>
-	 * La fourmi attaquée doit être dans le champ d’action (NEAR).<br>
+	 * La fourmi attaquÃ©e doit Ãªtre dans le champ dÂ’action (NEAR).<br>
 	 * Exclusive : oui<br>
-	 * Coût : voir tableau<br>
+	 * CoÃ»t : voir tableau<br>
 	 * <table border="1" class="docutils">
 		<colgroup>
 		<col width="33%" />
@@ -128,8 +128,8 @@ public class ActionsFourmis {
 		</colgroup>
 		<thead valign="bottom">
 		<tr class="row-odd"><th class="head">Force</th>
-		<th class="head">Coût</th>
-		<th class="head">Dégâts</th>
+		<th class="head">CoÃ»t</th>
+		<th class="head">DÃ©gÃ¢ts</th>
 		</tr>
 		</thead>
 		<tbody valign="top">
@@ -155,8 +155,8 @@ public class ActionsFourmis {
 		</tr>
 		</tbody>
 		</table>
-	 * @param id 	Identifiant de l’objet indiqué par SEE_ANT
-	 * @param force Force appliquée (voir tableau ci-dessus)
+	 * @param id 	Identifiant de lÂ’objet indiquÃ© par SEE_ANT
+	 * @param force Force appliquÃ©e (voir tableau ci-dessus)
 	 */
 	public void attack (Integer id, Integer force) {
 		
@@ -165,16 +165,16 @@ public class ActionsFourmis {
 	/**
 	 * Suicide la fourmi <br>
 	 * Exclusive : non <br>
-	 * Coût : 0 unité
+	 * CoÃ»t : 0 unitÃ©
 	 */
 	public void suicide () {
 		
 	}
 	
 	/**
-	 * Modifie la mémoire de la fourmi<br>
+	 * Modifie la mÃ©moire de la fourmi<br>
 	 * Exclusive : non<br>
-	 * Coût : 0 unités
+	 * CoÃ»t : 0 unitÃ©s
 	 * @param m0 Nombre compris entre 0 et 255 inclus.
 	 * @param m1 Nombre compris entre 0 et 255 inclus.
 	 */

@@ -3,10 +3,10 @@ package soprasteria.code24h.marabunta.communication.fourmiliere;
 public class ActionsFourmiliere {
 	
 	/**
-	 * Crée une nouvelle fourmi dans la fourmiliere <br>
-	 * Le type choisi par cette commande restera le même tout au long de la vie de la fourmi<br>
+	 * CrÃ©e une nouvelle fourmi dans la fourmiliere <br>
+	 * Le type choisi par cette commande restera le mÃªme tout au long de la vie de la fourmi<br>
 	 * Exclusive : oui<br>
-	 * Coût : 5 unités de nourriture
+	 * CoÃ»t : 5 unitÃ©s de nourriture
 	 * @param type Type de fourmi.
 	 */
 	public void AntNew(Integer type) {
@@ -15,24 +15,24 @@ public class ActionsFourmiliere {
 	
 	/**
 	 * Sort une fourmi de la fourmiliere<br>
-	 * Cette fourmi doit exister dans la fourmilière. Elle sort avec le maximum de stamina et emporte food unités de nourriture avec elle.<br>
+	 * Cette fourmi doit exister dans la fourmiliÃ¨re. Elle sort avec le maximum de stamina et emporte food unitÃ©s de nourriture avec elle.<br>
 	 * Exclusive : oui<br>
-	 * Coût : food + 1 unité de nourriture
+	 * CoÃ»t : food + 1 unitÃ© de nourriture
 	 * @param type Type de fourmi.
-	 * @param food Nourriture emportée.
-	 * @param m0 Mémoire initiale de la fourmi.
-	 * @param m1 Mémoire initiale de la fourmi.
+	 * @param food Nourriture emportÃ©e.
+	 * @param m0 MÃ©moire initiale de la fourmi.
+	 * @param m1 MÃ©moire initiale de la fourmi.
 	 */
 	public void AntOut(Integer type, Integer food, Integer m0, Integer m1) {
 		
 	}
 	
 	/**
-	 * Modifie la mémoire de la fourmiliere<br>
+	 * Modifie la mÃ©moire de la fourmiliere<br>
 	 * Exclusive : non<br>
-	 * Coût : 0
+	 * CoÃ»t : 0
 	 * @param m... Nombre compris entre 0 et 255 (max 20 parametres)
-	 * @throws RuntimeException Si y'a plus de 20 paramètres de passés 
+	 * @throws RuntimeException Si y'a plus de 20 paramÃ¨tres de passÃ©s 
 	 */
 	public void SetMemory(Integer... m) {
 		if(m.length > 20) {
