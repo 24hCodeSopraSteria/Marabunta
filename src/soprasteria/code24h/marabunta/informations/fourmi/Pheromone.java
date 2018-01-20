@@ -39,5 +39,7 @@ public class Pheromone {
 		this.type = type;
 	}
 	
-	
+	public String toString() {
+		return "Pheromone (id: " + id + ", zone: " + zone + ", dist: " + dist + ", type: " + type + ", persistance: " + persistance + ")";
+	}
 }
