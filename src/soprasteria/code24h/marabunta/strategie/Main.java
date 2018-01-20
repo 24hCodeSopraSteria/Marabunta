@@ -21,42 +21,53 @@ public class Main {
 		int run = 0;
 		
 		while(tr.notFinished)
-		{// Obtention de toutes les commandes d'entr�e
+		{
+			// Obtention de toutes les commandes d'entree
             List<String> cmds = tr.readAll();
+            
             // affichage pour debug
-//			for(String commandes : tr.listeDesCommandes) {
+//			for(String commandes : cmds) {
 //				System.out.println("> : " + commandes);
 //			}
+            
 			Fourmiliere fourmiliere = fourmiliereReader.read(cmds);
 			if(fourmiliere != null) {
 				// TODO strategie fourmilere
+//				for(String commandes : cmds) {
+//					System.out.println("> (fourmiliere): " + commandes);
+//				}
 			} else {
 				// TODO read fourmi
 				// TODO strategie fourmie
+//				for(String commandes : cmds) {
+//					System.out.println("> (fourmi): " + commandes);
+//				}
 			}
 			
 			run++;
-			// Création de la strat�gie initiale
+			// Création de la strategie initiale
 			
 
 			TerminalWriter tw = new TerminalWriter();
 			
-			// Chargement des commandes � envoyer dans le TerminalWriter
+			// Chargement des commandes a envoyer dans le TerminalWriter
 			
-			tw.add("ANT_NEW 0");
-			tw.add("ANT_OUT 0 100 100 0");
-			tw.add("EXPLORE");
-			tw.add("END");
+//			tw.add("ANT_NEW 0");
+//			tw.add("ANT_OUT 0 100 100 0");
+//			tw.add("EXPLORE");
+//			tw.add("END");
 			
 			
-			// Envoi de la strat�gie initiale
+			// Envoi de la strategie initiale
 			tw.sendAll();
-			
-			if (run > 3) {
-				tr.notFinished = false;
-			}
+//			
+//			if (run > 5) {
+//				tr.notFinished = false;
+//			}
 			
 		}
+		
+		System.out.println("Nombre de run " + run);
 		
 		
 	}
