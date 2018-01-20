@@ -17,11 +17,11 @@ public class TerminalReader {
 		List<String> listeDesCommandes = new ArrayList<String>();
 		boolean finDeReception = false;
 		
-		while(in.hasNextLine() && !finDeReception) {
+		while(!finDeReception) {
 			String entree = in.nextLine();
 			entree = entree.trim();
 			
-			if (entree.equals("END")) {
+			if (entree.contains("END")) {
 				finDeReception = true;
 			}
 			
