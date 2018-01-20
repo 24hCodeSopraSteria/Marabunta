@@ -195,7 +195,7 @@ public class ActionsFourmis {
 	 * @param m1 Nombre compris entre 0 et 255 inclus.
 	 * @throws RuntimeException Si une des deux valeurs est en dehors des bornes
 	 */
-	public void SetMemory(Short m0, Short m1) {
+	public void SetMemory(Integer m0, Integer m1) {
 		if(m0 < 0 || m0 > 255 || m1 < 0 || m1 > 255) {
 			throw new RuntimeException();
 		}

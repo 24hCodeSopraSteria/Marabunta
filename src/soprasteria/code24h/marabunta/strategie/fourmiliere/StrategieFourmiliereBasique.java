@@ -1,8 +1,5 @@
 package soprasteria.code24h.marabunta.strategie.fourmiliere;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import soprasteria.code24h.marabunta.communication.fourmiliere.ActionsFourmiliere;
 import soprasteria.code24h.marabunta.informations.fourmiliere.Fourmiliere;
 
@@ -17,7 +14,7 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 		System.out.println(": > interieur : " + fourmisInterieur + " exterieur : " + fourmisExterieur);
 		if(fourmisExterieur < 20 && fourmisInterieur > 0) {
 			actionsFourmiliere.SetMemory(++fourmisExterieur);
-			actionsFourmiliere.AntOut(0, 5, (short)0, (short)0);
+			actionsFourmiliere.AntOut(0, 5, 0, 0);
 		} else if (fourmisInterieur == 0) {
 			actionsFourmiliere.AntNew(0);
 		}
