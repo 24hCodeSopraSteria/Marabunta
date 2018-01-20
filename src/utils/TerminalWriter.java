@@ -1,10 +1,14 @@
 package utils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TerminalWriter {
-	public ArrayList<String> commandes = new ArrayList<String>();
-	
+	private List<String> commandes = new ArrayList<String>();
+	private static TerminalWriter instance = null;
+
+	private TerminalWriter() {}
+
 	public void sendAll() {
 		for (String commande : commandes) {
 			System.out.println("< " + commande);
@@ -15,5 +19,12 @@ public class TerminalWriter {
 	
 	public void add(String ajout) {
 		this.commandes.add(ajout);
+	}
+
+	public static TerminalWriter getInstance() {
+		if(TerminalWriter.instance == null) {
+			TerminalWriter.instance = new TerminalWriter();
+		}
+		return TerminalWriter.instance;
 	}
 }
