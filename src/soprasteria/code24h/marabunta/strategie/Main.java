@@ -1,19 +1,21 @@
 package soprasteria.code24h.marabunta.strategie;
 
 import java.util.Scanner;
-
 import utils.TerminalReader;
 import utils.TerminalWriter;
+import soprasteria.code24h.marabunta.communication.fourmis.ActionsFourmis;
+
 
 public class Main {
 
 	public static void main(String[] args) {
+		ActionsFourmis actionFourmi = new ActionsFourmis();
 		System.out.println("Hello world !");
 
 		TerminalReader tr = new TerminalReader();
 		
 		//while(tr.notFinished)
-		{// Obtention de toutes les commandes d'entrÃ©e
+		{// Obtention de toutes les commandes d'entrée
 			tr.readAll();
 			
 //			for(String commandes : tr.listeDesCommandes) {
@@ -40,5 +42,6 @@ public class Main {
 		
 		
 	}
+	
 
 }
