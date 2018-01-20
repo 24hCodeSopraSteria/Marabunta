@@ -74,9 +74,9 @@ public class Main {
 			// Envoi de la strategie initiale
 			tw.sendAll();
 //			
-			if (run > 5) {
-				tr.notFinished = false;
-			}
+//			if (run > 5) {
+//				tr.notFinished = false;
+//			}
 			
 		}
 		
