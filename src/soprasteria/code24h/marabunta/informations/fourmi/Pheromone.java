@@ -4,7 +4,10 @@ public class Pheromone {
 	public Integer id;
 	public String zone;
 	public Integer dist;
+	public Integer type;
 	public Integer persistance;
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -28,6 +31,12 @@ public class Pheromone {
 	}
 	public void setPersistance(Integer persistance) {
 		this.persistance = persistance;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
 	}
 	
 	

@@ -1,11 +1,11 @@
 package soprasteria.code24h.marabunta.informations.fourmi;
 
-public class Nourriture {
+public class FourmisVues {
 	public Integer id;
 	public String zone;
 	public Integer dist;
-	public Integer amount;
-	
+	public boolean friend;
+	public Integer stamina;
 	public Integer getId() {
 		return id;
 	}
@@ -24,11 +24,17 @@ public class Nourriture {
 	public void setDist(Integer dist) {
 		this.dist = dist;
 	}
-	public Integer getAmount() {
-		return amount;
+	public boolean isFriend() {
+		return friend;
 	}
-	public void setAmount(Integer amount) {
-		this.amount = amount;
+	public void setFriend(boolean friend) {
+		this.friend = friend;
+	}
+	public Integer getStamina() {
+		return stamina;
+	}
+	public void setStamina(Integer stamina) {
+		this.stamina = stamina;
 	}
 	
 	

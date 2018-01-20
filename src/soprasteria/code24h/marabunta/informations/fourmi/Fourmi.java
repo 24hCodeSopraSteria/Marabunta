@@ -1,5 +1,6 @@
 package soprasteria.code24h.marabunta.informations.fourmi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import soprasteria.code24h.marabunta.informations.fourmiliere.Fourmiliere;
@@ -11,8 +12,16 @@ public class Fourmi {
 	public Integer stamina;
 	public Integer stock;
 	public List<Pheromone> pheromonesAProximite;
-	public List<Fourmiliere> fourmilliereVoisines;
+	public List<FourmisVues> fourmisAProximite;
+	public List<FourmilieresVues> fourmilliereVoisines;
 	public List<Nourriture> nourritureAProximite;
+	
+	public Fourmi() {
+		this.pheromonesAProximite = new ArrayList<Pheromone>();
+		this.fourmisAProximite = new ArrayList<FourmisVues>();
+		this.fourmilliereVoisines = new ArrayList<FourmilieresVues>();
+		this.nourritureAProximite = new ArrayList<Nourriture>();
+	}
 	
 	
 	
@@ -52,10 +61,10 @@ public class Fourmi {
 	public void setPheromonesAProximite(List<Pheromone> pheromonesAProximite) {
 		this.pheromonesAProximite = pheromonesAProximite;
 	}
-	public List<Fourmiliere> getFourmilliereVoisines() {
+	public List<FourmilieresVues> getFourmilliereVoisines() {
 		return fourmilliereVoisines;
 	}
-	public void setFourmilliereVoisines(List<Fourmiliere> fourmilliereVoisines) {
+	public void setFourmilliereVoisines(List<FourmilieresVues> fourmilliereVoisines) {
 		this.fourmilliereVoisines = fourmilliereVoisines;
 	}
 	public List<Nourriture> getNourritureAProximite() {
@@ -64,6 +73,5 @@ public class Fourmi {
 	public void setNourritureAProximite(List<Nourriture> nourritureAProximite) {
 		this.nourritureAProximite = nourritureAProximite;
 	}
-	
 	
 }
