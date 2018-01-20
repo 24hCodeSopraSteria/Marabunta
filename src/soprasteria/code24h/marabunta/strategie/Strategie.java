@@ -10,7 +10,7 @@ public interface Strategie<T> {
 	/**
 	 * Exécute l'intelligence d'un élément
 	 * @param elem l'élément
-	 * @return la liste des commande pour le tour de l'élément.
+	 * @return void (pour le moment)
 	 */
-	public List<String> cogite(T elem);
+	public void cogite(T elem);
 }

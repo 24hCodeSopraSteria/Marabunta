@@ -58,8 +58,6 @@ public class Main {
 			run++;
 		}
 		
-		System.out.println("Nombre de run " + run);
-		
 		
 	}
 	
