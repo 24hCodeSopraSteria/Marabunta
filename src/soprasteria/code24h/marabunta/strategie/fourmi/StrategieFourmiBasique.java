@@ -23,10 +23,18 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 			memoireFourmi[0] = 0;
 		}
 		if(cptCycle % StrategieConfig.CYCLE_PHEROMONE == 0) {
-			actionsFourmi.PutPheromone(0);
+			actionsFourmi.PutPheromone(memoireFourmi[1]);
 			return ;
 		}
+		if (memoireFourmi[1] == 1) {
+			// Retour au bercail
+			//if (fourmi.getFourmilliereVoisines());
+			//actionsFourmi.
+		}
+
 		if (!nourritures.isEmpty()) {
+
+			// Si il y a de la nourriture 
 			Nourriture nourritureProche = nourritures.get(0);
 			for(int i = 1; i < nourritures.size(); i++) {
 				int dist = nourritures.get(i).getDist();
