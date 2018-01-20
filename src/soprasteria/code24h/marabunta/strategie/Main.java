@@ -36,7 +36,7 @@ public class Main {
             
             // affichage pour debug
 			for(String commandes : cmds) {
-				System.out.println("> : " + commandes);
+				System.out.println(": > " + commandes);
 			}
 			
 			Fourmiliere fourmiliere = fourmiliereReader.read(cmds);
