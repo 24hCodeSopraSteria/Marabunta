@@ -10,6 +10,7 @@ public class TerminalWriter {
 			System.out.println("< " + commande);
 		}
 		System.out.flush();
+		commandes = new ArrayList<String>();
 	}
 	
 	public void add(String ajout) {
