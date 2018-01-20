@@ -3,8 +3,6 @@ package soprasteria.code24h.marabunta.informations.fourmi;
 import java.util.ArrayList;
 import java.util.List;
 
-import soprasteria.code24h.marabunta.informations.fourmiliere.Fourmiliere;
-
 public class Fourmi {
 	private Integer type;
 	private Integer[] memoire = {0, 0};

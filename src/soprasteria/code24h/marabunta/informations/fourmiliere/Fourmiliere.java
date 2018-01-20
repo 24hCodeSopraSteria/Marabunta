@@ -72,8 +72,12 @@ public class Fourmiliere {
 			strBuilder.append(memories[i]).append(", ");
 		}
 		strBuilder.append(memories[memories.length - 1]);
-		strBuilder.append(']');
-		strBuilder.append(")");
+		strBuilder.append("], fourmiIn : [");
+		for(Fourmi f : fourmiIn) {
+			strBuilder.append("(type : ").append(f.getType());
+			strBuilder.append("), ");
+		}
+		strBuilder.append("])");
 		return strBuilder.toString();
 	}
 }
