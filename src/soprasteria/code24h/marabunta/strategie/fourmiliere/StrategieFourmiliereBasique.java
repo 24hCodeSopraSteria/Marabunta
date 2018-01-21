@@ -8,7 +8,7 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 	private ActionsFourmiliere actionsFourmiliere = new ActionsFourmiliere();
 
 	@Override
-	public void cogite(Fourmiliere fourmiliere) {
+	public boolean cogite(Fourmiliere fourmiliere) {
 		int fourmisInterieur = fourmiliere.getNbFourmis();
 		Integer[] memoire = fourmiliere.getMemories();
 		System.out.println(": > interieur : " + fourmisInterieur + " exterieur : " + memoire[0]);
@@ -20,5 +20,6 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 		} else if (fourmisInterieur == 0) {
 			actionsFourmiliere.AntNew(0);
 		}
+		return true;
 	}
 }

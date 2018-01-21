@@ -138,4 +138,52 @@ public class FourmiTest {
 		Fourmi f = new Fourmi();
 		assertNull(f.pheromoneLaPlusProche());
 	}
+	
+	@Test
+	public void testPheromoneLaMoinsPuissante() {
+		Fourmi f = new Fourmi();
+		List<Pheromone> pheros = new ArrayList<>();
+		Pheromone expected = new Pheromone();
+		expected.setType(TypePheromone.NOURRITURE_TROUVE);
+		expected.setPersistance(1);
+		Pheromone other = new Pheromone();
+		other.setPersistance(4);
+		other.setType(TypePheromone.NOURRITURE_TROUVE);
+		pheros.add(other);
+		pheros.add(expected);
+		other = new Pheromone();
+		other.setType(TypePheromone.NOURRITURE_TERMINE);
+		other.setPersistance(0);
+		pheros.add(other);
+		f.setPheromonesAProximite(pheros);
+		
+		assertTrue(expected == f.pheromoneLaMoinsPuissante(TypePheromone.NOURRITURE_TROUVE));
+	}
+	
+	@Test
+	public void testPheromoneLaMoinsPuissanteNoPheromone() {
+		Fourmi f = new Fourmi();
+		assertNull(f.pheromoneLaMoinsPuissante(TypePheromone.NOURRITURE_TERMINE));
+	}
+	
+	@Test
+	public void testPheromoneLaMoinsPuissanteNoPheromoneType() {
+		Fourmi f = new Fourmi();
+		List<Pheromone> pheros = new ArrayList<>();
+		Pheromone expected = new Pheromone();
+		expected.setType(TypePheromone.NOURRITURE_TERMINE);
+		expected.setPersistance(1);
+		Pheromone other = new Pheromone();
+		other.setPersistance(4);
+		other.setType(TypePheromone.NOTHING);
+		pheros.add(other);
+		pheros.add(expected);
+		other = new Pheromone();
+		other.setType(TypePheromone.NOURRITURE_TERMINE);
+		other.setPersistance(0);
+		pheros.add(other);
+		f.setPheromonesAProximite(pheros);
+		
+		assertNull(f.pheromoneLaMoinsPuissante(TypePheromone.NOURRITURE_TROUVE));
+	}
 }

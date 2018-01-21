@@ -6,6 +6,7 @@ import soprasteria.code24h.marabunta.communication.fourmis.ActionsFourmis;
 import soprasteria.code24h.marabunta.informations.fourmi.Fourmi;
 import soprasteria.code24h.marabunta.informations.fourmi.FourmilieresVues;
 import soprasteria.code24h.marabunta.informations.fourmi.Nourriture;
+import soprasteria.code24h.marabunta.informations.fourmi.Pheromone;
 import soprasteria.code24h.marabunta.informations.fourmi.TypePheromone;
 import soprasteria.code24h.marabunta.strategie.StrategieConfig;
 import utils.IntegerBitFlagManipulator;
@@ -22,11 +23,13 @@ public class StrategieFourmiRecolteuse implements StrategieFourmi {
 	private final ActionsFourmis actionsFourmi;
 	private final StrategieFourmi stratRemontePiste;
 	private StrategieFourmiSuivrePiste stratSuivrePiste;
+	private StrategieFourmi stratSurvie;
 	
 	public StrategieFourmiRecolteuse(ActionsFourmis actionsFourmis) {
 		this.actionsFourmi = actionsFourmis;
-		this.stratRemontePiste = new StrategieFourmiRemonterPiste(Arrays.asList(TypePheromone.NOTHING));
-		this.stratSuivrePiste = new StrategieFourmiSuivrePiste(Arrays.asList(TypePheromone.NOURRITURE_TROUVE));
+		this.stratRemontePiste = new StrategieFourmiRemonterPiste(actionsFourmis, Arrays.asList(TypePheromone.NOTHING));
+		this.stratSuivrePiste = new StrategieFourmiSuivrePiste(actionsFourmis, Arrays.asList(TypePheromone.NOURRITURE_TROUVE));
+		this.stratSurvie = new StrategieFourmiStaminaSurvi(actionsFourmis);
 	}
 	
 	public StrategieFourmiRecolteuse() {
@@ -34,7 +37,11 @@ public class StrategieFourmiRecolteuse implements StrategieFourmi {
 	}
 	
 	@Override
-	public void cogite(Fourmi fourmi) {
+	public boolean cogite(Fourmi fourmi) {
+		if(stratSurvie.cogite(fourmi)) {
+			// On a manger pour sauver la nourriture
+			return true;
+		}
 		Integer[] memoires = fourmi.getMemoire();
 		if(IntegerBitFlagManipulator.checkFlag(memoires[0], RENTRER)) {
 			FourmilieresVues fourmiliereVue = fourmi.getFourmiliereAmie();
@@ -42,19 +49,37 @@ public class StrategieFourmiRecolteuse implements StrategieFourmi {
 				this.actionsFourmi.MoveTo(fourmiliereVue.id);
 			} else if(IntegerBitFlagManipulator.checkFlag(memoires[0], SUIVRE_PISTE)) {
 				stratRemontePiste.cogite(fourmi);
+			} else {
+				actionsFourmi.Explore();
 			}
 		} else {
 			Nourriture nourriture = fourmi.nourritureLaPlusProche();
 			if(nourriture != null) {
 				if(StrategieConfig.NEAR.equals(nourriture.getZone())) {
+					if(fourmi.getStock() +	nourriture.getAmount() >= 1000) {
+						// Activer les flags pour rentrer à la maison
+						actionsFourmi.SetMemory(memoires[0] | RENTRER | SUIVRE_PISTE, memoires[1]);
+					} else {
+						// désactiver suivre piste
+						actionsFourmi.SetMemory(memoires[0] & ~SUIVRE_PISTE, memoires[1]);
+					}
 					actionsFourmi.Collect(nourriture.getId(), 1000);
 				} else {
-			// TODO si nourriture présente recolter ou diriger vers
+					actionsFourmi.MoveTo(nourriture.getId());
+				}
+			} else if(IntegerBitFlagManipulator.checkFlag(memoires[0], SUIVRE_PISTE)) {
+				stratSuivrePiste.cogite(fourmi);
+			} else {
+				// Sinon chercher piste
+				Pheromone phero = fourmi.pheromoneLaMoinsPuissante(TypePheromone.NOURRITURE_TROUVE);
+				if(phero != null) {
+					actionsFourmi.MoveTo(phero.getId());
+				} else {
+					actionsFourmi.Explore();
 				}
 			}
-			// Sinon si suivre piste -> suivre la piste courante 
-			// Sinon chercher piste
 		}
+		return true;
 	}
 
 	/**

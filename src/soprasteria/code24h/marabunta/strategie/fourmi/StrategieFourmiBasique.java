@@ -18,7 +18,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 	ActionsFourmis actionsFourmi = new ActionsFourmis();
 
 	@Override
-	public void cogite(Fourmi fourmi) {
+	public boolean cogite(Fourmi fourmi) {
 		List<Nourriture> nourritures= fourmi.getNourritureAProximite();
 		Integer[] memoireFourmi = fourmi.getMemoire();
 		System.out.println(": memoireFourmi " + memoireFourmi[0] + " | " + memoireFourmi[1]);
@@ -37,7 +37,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 			if(fourmilieresAmie != null) {
 				System.out.println(": Fourmiliere amie trouvé");
 				actionsFourmi.MoveTo(fourmilieresAmie.getId());		
-				return ;
+				return true;
 			} // TODO : gérer changement type pheromone pour le retour
 			List<Pheromone> pheromones = fourmi.getPheromonesAProximite();
 			if(!pheromones.isEmpty()) {
@@ -61,11 +61,11 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 						System.out.println(": Deplacement vers le pheromone " + pheromoneSelect.getId());
 						actionsFourmi.MoveTo(pheromoneSelect.id);
 					}
-					return ;
+					return true;
 				}
 			} else {
 				actionsFourmi.suicide();
-				return ;
+				return true;
 			}
 		}
 
@@ -74,7 +74,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 			// A ameliorer selon etat fourmi
 			System.out.println(": pheromone car " + cptCycle + "  ; " + cptCycle % StrategieConfig.CYCLE_PHEROMONE);
 			actionsFourmi.PutPheromone(getTypePheromone(TypePheromone.NOTHING, memoireFourmi[1]));
-			return ;
+			return true;
 		}
 		if (!nourritures.isEmpty()) {
 			System.out.println(": bouffe trouvé");
@@ -90,12 +90,13 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 				System.out.println("Valeur memoire fourmi " + memoireFourmi[1]);
 				actionsFourmi.SetMemory(memoireFourmi[0], memoireFourmi[1] + 128);
 				actionsFourmi.Collect(nourritureProche.getId(), StrategieConfig.MAX_FOOD);
-				return ;
+				return true;
 			}
 			actionsFourmi.MoveTo(nourritureProche.getId());
-			return;
+			return true;
 		} 
 		actionsFourmi.Explore();
+		return true;
 	}
 
 	private Integer getTypePheromone(Integer typePheromone, Integer idFourmi) {
