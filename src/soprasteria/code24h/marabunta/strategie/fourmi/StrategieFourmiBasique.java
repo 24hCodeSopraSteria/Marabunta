@@ -35,19 +35,17 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 		if (!nourritures.isEmpty()) {
 
 			// Si il y a de la nourriture 
-			Nourriture nourritureProche = nourritures.get(0);
-			for(int i = 1; i < nourritures.size(); i++) {
-				int dist = nourritures.get(i).getDist();
-				if(dist < nourritureProche.getDist() ) {
-					nourritureProche = nourritures.get(i);
-				}
-			}
-			if (nourritureProche.getZone() == StrategieConfig.NEAR) {
+			Nourriture nourritureProche = fourmi.nourritureLaPlusProche();
+			
+			if (nourritureProche != null && nourritureProche.getZone() == StrategieConfig.NEAR) {
 				actionsFourmi.SetMemory(memoireFourmi[0], 1);
 				actionsFourmi.Collect(nourritureProche.getId(), StrategieConfig.MAX_FOOD);
 				return ;
 			}
-			actionsFourmi.MoveTo(nourritureProche.getId());
+			
+			if (nourritureProche != null) {
+				actionsFourmi.MoveTo(nourritureProche.getId());	
+			}
 		} else {
 			actionsFourmi.Explore();
 		}
