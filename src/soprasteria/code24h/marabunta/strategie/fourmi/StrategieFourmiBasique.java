@@ -24,7 +24,8 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 		System.out.println(": memoireFourmi " + memoireFourmi[0] + " | " + memoireFourmi[1]);
 
 		// gestion du cycle
-		int cptCycle = memoireFourmi[0]++;
+		int cptCycle = ++memoireFourmi[0];
+		System.out.println(": cpt " + cptCycle);
 		if(cptCycle >= StrategieConfig.MAX_CPT) {
 			cptCycle = 0;
 			memoireFourmi[0] = 0;
@@ -65,7 +66,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 		// Recherche de nourriture
 		if(cptCycle % StrategieConfig.CYCLE_PHEROMONE == 0) {
 			// A ameliorer selon etat fourmi
-			System.out.println("pheromone car " + cptCycle + "  ; " + cptCycle % StrategieConfig.CYCLE_PHEROMONE);
+			System.out.println(": pheromone car " + cptCycle + "  ; " + cptCycle % StrategieConfig.CYCLE_PHEROMONE);
 			actionsFourmi.PutPheromone(getTypePheromone(TypePheromone.NOTHING, memoireFourmi[1]));
 			return ;
 		}
