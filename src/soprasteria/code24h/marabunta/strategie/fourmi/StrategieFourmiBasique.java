@@ -57,16 +57,14 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 					}
 				}
 				
-				if(pheromoneSelect != null) {
-					if(pheromoneSelect.getZone().contains(StrategieConfig.NEAR)) {
-						System.out.println(": Changement type pheromone");
-						actionsFourmi.ChangePheromone(pheromoneSelect.id, memoireFourmi[1] + 128);
-					} else {
-						System.out.println(": Deplacement vers le pheromone " + pheromoneSelect.getId());
-						actionsFourmi.MoveTo(pheromoneSelect.id);
-					}
-					return true;
+				if(pheromoneSelect.getZone().contains(StrategieConfig.NEAR)) {
+					System.out.println(": Changement type pheromone");
+					actionsFourmi.ChangePheromone(pheromoneSelect.id, memoireFourmi[1] + 128);
+				} else {
+					System.out.println(": Deplacement vers le pheromone " + pheromoneSelect.getId());
+					actionsFourmi.MoveTo(pheromoneSelect.id);
 				}
+				return true;
 			} else {
 				actionsFourmi.suicide();
 				actionsFourmi.sendActions();
