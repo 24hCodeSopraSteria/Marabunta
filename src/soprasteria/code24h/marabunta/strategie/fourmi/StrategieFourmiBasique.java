@@ -22,7 +22,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 		List<Nourriture> nourritures= fourmi.getNourritureAProximite();
 		Integer[] memoireFourmi = fourmi.getMemoire();
 
-		if (fourmi.getStamina() < 4000) {
+		if (fourmi.getStamina() < 8000) {
 			actionsFourmi.suicide();
 			actionsFourmi.sendActions();
 			return true;
