@@ -14,8 +14,9 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 		System.out.println(": > interieur : " + fourmisInterieur + " exterieur : " + memoire[0]);
 		if(memoire[0] < 20 && fourmisInterieur > 0) {
 			memoire[0]++;
+			int id = memoire[1]++;
 			actionsFourmiliere.SetMemory(memoire);
-			actionsFourmiliere.AntOut(0, 5, 0, memoire[1]++);
+			actionsFourmiliere.AntOut(0, 5, 0, id);
 		} else if (fourmisInterieur == 0) {
 			actionsFourmiliere.AntNew(0);
 		}

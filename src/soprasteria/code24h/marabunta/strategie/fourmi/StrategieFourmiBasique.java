@@ -21,16 +21,18 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 	public void cogite(Fourmi fourmi) {
 		List<Nourriture> nourritures= fourmi.getNourritureAProximite();
 		Integer[] memoireFourmi = fourmi.getMemoire();
+		System.out.println(": memoireFourmi " + memoireFourmi[0] + " | " + memoireFourmi[1]);
 
 		// gestion du cycle
-		int cptCycle = memoireFourmi[0]++;
+		int cptCycle = ++memoireFourmi[0];
 		if(cptCycle >= StrategieConfig.MAX_CPT) {
 			cptCycle = 0;
 			memoireFourmi[0] = 0;
 		}
-		actionsFourmi.SetMemory(0, memoireFourmi[1]);
+		actionsFourmi.SetMemory(cptCycle, memoireFourmi[1]);
 		// Retour au bercail
-		if ((memoireFourmi[1] << 7) != 0) {
+		if ((memoireFourmi[1] >> 7) == 1) {
+			System.out.println(": Retour au bercail");
 			FourmilieresVues fourmilieresAmie = fourmi.getFourmiliereAmie();
 			if(fourmilieresAmie != null) {
 				actionsFourmi.MoveTo(fourmilieresAmie.getId());		
@@ -64,11 +66,12 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 		// Recherche de nourriture
 		if(cptCycle % StrategieConfig.CYCLE_PHEROMONE == 0) {
 			// A ameliorer selon etat fourmi
+			System.out.println(": pheromone car " + cptCycle + "  ; " + cptCycle % StrategieConfig.CYCLE_PHEROMONE);
 			actionsFourmi.PutPheromone(getTypePheromone(TypePheromone.NOTHING, memoireFourmi[1]));
 			return ;
 		}
 		if (!nourritures.isEmpty()) {
-
+			System.out.println(": bouffe trouvé");
 			// Si il y a de la nourriture 
 			Nourriture nourritureProche = nourritures.get(0);
 			for(int i = 1; i < nourritures.size(); i++) {
@@ -78,11 +81,12 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 				}
 			}
 			if (nourritureProche.getZone() == StrategieConfig.NEAR) {
-				actionsFourmi.SetMemory(memoireFourmi[0], 1);
+				actionsFourmi.SetMemory(memoireFourmi[0], memoireFourmi[1] + 128);
 				actionsFourmi.Collect(nourritureProche.getId(), StrategieConfig.MAX_FOOD);
 				return ;
 			}
 			actionsFourmi.MoveTo(nourritureProche.getId());
+			return;
 		} 
 		actionsFourmi.Explore();
 	}
