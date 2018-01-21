@@ -37,7 +37,6 @@ public class Main {
 			if(fourmiliere != null) {
 				// La fourmiliere est instancié
 				stratFourmiliere.cogite(fourmiliere);
-				continue;
 			} else {
 				Fourmi fourmi = fourmiReader.read(cmds);
 				if(fourmi != null) {
