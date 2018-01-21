@@ -25,7 +25,7 @@ public class StrategieFourmiBasiqueVerifEcran implements StrategieFourmi {
 		actionsFourmi.SetMemory(++cptCycle, memoireFourmi[1]);
 		
 		if(cptCycle % StrategieConfig.CYCLE_PHEROMONE == 0) {
-			actionsFourmi.PutPheromone(memoireFourmi[1]);
+			actionsFourmi.PutPheromone(1);
 			return ;
 		} else {
 			// nourriture ?
