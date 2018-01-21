@@ -48,7 +48,9 @@ public class StrategieFourmiRecolteuse implements StrategieFourmi {
 			if(fourmiliereVue != null) {
 				this.actionsFourmi.MoveTo(fourmiliereVue.id);
 			} else if(IntegerBitFlagManipulator.checkFlag(memoires[0], SUIVRE_PISTE)) {
-				stratRemontePiste.cogite(fourmi);
+				if(!stratRemontePiste.cogite(fourmi)) {
+					this.actionsFourmi.Explore();
+				}
 			} else {
 				actionsFourmi.Explore();
 			}
@@ -68,7 +70,9 @@ public class StrategieFourmiRecolteuse implements StrategieFourmi {
 					actionsFourmi.MoveTo(nourriture.getId());
 				}
 			} else if(IntegerBitFlagManipulator.checkFlag(memoires[0], SUIVRE_PISTE)) {
-				stratSuivrePiste.cogite(fourmi);
+				if(!stratSuivrePiste.cogite(fourmi)) {
+					actionsFourmi.Explore();
+				}
 			} else {
 				// Sinon chercher piste
 				Pheromone phero = fourmi.pheromoneLaMoinsPuissante(TypePheromone.NOURRITURE_TROUVE);

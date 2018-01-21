@@ -4,6 +4,7 @@ import java.util.List;
 
 import soprasteria.code24h.marabunta.communication.fourmis.ActionsFourmis;
 import soprasteria.code24h.marabunta.informations.fourmi.Fourmi;
+import soprasteria.code24h.marabunta.informations.fourmi.Pheromone;
 
 /**
  * Strategie faisant suivre une piste de phéromone de types particuliers à une fourmie pour qu'elle revienne sur ces pas.
@@ -22,8 +23,14 @@ public class StrategieFourmiSuivrePiste implements StrategieFourmi {
 	}
 	
 	@Override
-	public boolean cogite(Fourmi elem) {
-		// TODO chercher phéromonone la plus forte puis suivre
+	public boolean cogite(Fourmi fourmi) {
+		for(Integer typePhero : typesPheromone) {
+			Pheromone phero = fourmi.pheromoneLaPlusPuissante(typePhero);
+			if(phero != null) {
+				actionsFourmi.MoveTo(phero.getId());
+				return true;
+			}
+		}
 		return false;
 	}
 
