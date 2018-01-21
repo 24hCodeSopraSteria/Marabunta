@@ -1,6 +1,7 @@
 package soprasteria.code24h.marabunta.strategie.fourmiliere;
 
 import soprasteria.code24h.marabunta.communication.fourmiliere.ActionsFourmiliere;
+import soprasteria.code24h.marabunta.informations.fourmi.TypeFourmi;
 import soprasteria.code24h.marabunta.informations.fourmiliere.Fourmiliere;
 
 public class StrategieFourmiliereBasique implements StrategieFourmiliere {
@@ -18,7 +19,7 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 			actionsFourmiliere.SetMemory(memoire);
 			actionsFourmiliere.AntOut(0, 5, 0, id);
 		} else if (fourmisInterieur == 0) {
-			actionsFourmiliere.AntNew(0);
+			actionsFourmiliere.AntNew(TypeFourmi.EXPLORATRICE_BASIQUE);
 		}
 		return true;
 	}
