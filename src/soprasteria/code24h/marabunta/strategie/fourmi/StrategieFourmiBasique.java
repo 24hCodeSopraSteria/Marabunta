@@ -65,6 +65,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 		// Recherche de nourriture
 		if(cptCycle % StrategieConfig.CYCLE_PHEROMONE == 0) {
 			// A ameliorer selon etat fourmi
+			System.out.println("pheromone car " + cptCycle + "  ; " + cptCycle % StrategieConfig.CYCLE_PHEROMONE);
 			actionsFourmi.PutPheromone(getTypePheromone(TypePheromone.NOTHING, memoireFourmi[1]));
 			return ;
 		}
