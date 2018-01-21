@@ -46,14 +46,11 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 			List<Pheromone> pheromones = fourmi.getPheromonesAProximite();
 			if(!pheromones.isEmpty()) {
 				// recherche pheromone de la fourmi
-				Pheromone pheromoneSelect = null;
+				Pheromone pheromoneSelect = pheromones.get(1);
 				for(int i = 1; i < pheromones.size(); i++) {
 					Pheromone pheromone = pheromones.get(i);
 					if(pheromone.getIdFourmi() == (memoireFourmi[1] - 128)) {
-						if(pheromoneSelect == null && pheromone.getMSBtype() == TypePheromone.NOTHING) {
-							pheromoneSelect = pheromone;
-							System.out.println(": phe select " + pheromoneSelect.getId());
-						} else if(pheromoneSelect.getPersistance() > pheromone.getPersistance() && pheromone.getMSBtype() == TypePheromone.NOTHING){
+						if(pheromoneSelect.getPersistance() > pheromone.getPersistance() && pheromone.getMSBtype() == TypePheromone.NOTHING){
 							pheromoneSelect = pheromone;
 							System.out.println(": phe select " + pheromoneSelect.getId());
 						}
