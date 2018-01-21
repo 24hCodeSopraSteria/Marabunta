@@ -45,16 +45,18 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 				Pheromone pheromoneSelect = null;
 				for(int i = 1; i < pheromones.size(); i++) {
 					Pheromone pheromone = pheromones.get(i);
-					if(pheromone.getIdFourmi() == (memoireFourmi[1] >> 7)) {
+					if(pheromone.getIdFourmi() == (memoireFourmi[1] - 128)) {
 						System.out.println(": MSB " + pheromone.getMSBtype());
 						if(pheromoneSelect == null && pheromone.getMSBtype() == TypePheromone.NOTHING) {
 							pheromoneSelect = pheromone;
+							System.out.println(": phe select " + pheromoneSelect.getId());
 						} else if(pheromoneSelect.getDist() > pheromone.getDist() && pheromone.getMSBtype() == TypePheromone.NOTHING){
 							pheromoneSelect = pheromone;
+							System.out.println(": phe select " + pheromoneSelect.getId());
 						}
 					}
 				}
-				System.out.println(": phe select " + pheromoneSelect.getId());
+				
 				if(pheromoneSelect != null) {
 					if(pheromoneSelect.getZone().contains(StrategieConfig.NEAR)) {
 						System.out.println(": Changement type pheromone");
