@@ -36,7 +36,11 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 			FourmilieresVues fourmilieresAmie = fourmi.getFourmiliereAmie();
 			if(fourmilieresAmie != null) {
 				System.out.println(": Fourmiliere amie trouvé");
-				actionsFourmi.MoveTo(fourmilieresAmie.getId());		
+				if(fourmilieresAmie.zone.contains(StrategieConfig.NEAR)) {
+					actionsFourmi.Nest(fourmilieresAmie.getId());
+					return true;
+				}
+				actionsFourmi.MoveTo(fourmilieresAmie.getId());
 				return true;
 			} // TODO : gérer changement type pheromone pour le retour
 			List<Pheromone> pheromones = fourmi.getPheromonesAProximite();
