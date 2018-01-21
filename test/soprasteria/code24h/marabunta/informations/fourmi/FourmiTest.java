@@ -2,6 +2,9 @@ package soprasteria.code24h.marabunta.informations.fourmi;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 public class FourmiTest {
@@ -40,4 +43,63 @@ public class FourmiTest {
 		assertEquals(n2, f.nourritureLaPlusProche());
 	}
 
+	@Test
+	public void testGetFourmiliereAmie() {
+		Fourmi f = new Fourmi();
+		List<FourmilieresVues> fourmilliereVoisines = new ArrayList<FourmilieresVues>();
+		FourmilieresVues vueExpected = new FourmilieresVues();
+		vueExpected.setDist(10);
+		vueExpected.setFriend(true);
+		FourmilieresVues vueAutre = new FourmilieresVues();
+		vueAutre.setDist(100);
+		fourmilliereVoisines.add(vueAutre);
+		vueAutre = new FourmilieresVues();
+		vueAutre.setDist(20);
+		vueAutre.setFriend(true);
+		fourmilliereVoisines.add(vueAutre);
+		fourmilliereVoisines.add(vueExpected);
+		f.setFourmilliereVoisines(fourmilliereVoisines);
+		
+		assertTrue(vueExpected == f.getFourmiliereAmie());
+	}
+	
+	@Test
+	public void testGetFourmiliereAmieOneFourmiliere() {
+		Fourmi f = new Fourmi();
+		List<FourmilieresVues> fourmilliereVoisines = new ArrayList<FourmilieresVues>();
+		FourmilieresVues vueExpected = new FourmilieresVues();
+		vueExpected.setDist(10);
+		vueExpected.setFriend(true);
+		fourmilliereVoisines.add(vueExpected);
+		f.setFourmilliereVoisines(fourmilliereVoisines);
+		
+		assertTrue(vueExpected == f.getFourmiliereAmie());
+	}
+	
+	@Test
+	public void testGetFourmiliereAmieNoFourmiliere() {
+		Fourmi f = new Fourmi();
+		List<FourmilieresVues> fourmilliereVoisines = new ArrayList<FourmilieresVues>();
+		f.setFourmilliereVoisines(fourmilliereVoisines);
+		
+		assertNull(f.getFourmiliereAmie());
+	}
+	
+	@Test
+	public void testGetFourmiliereAmieNoAmie() {
+		Fourmi f = new Fourmi();
+		List<FourmilieresVues> fourmilliereVoisines = new ArrayList<FourmilieresVues>();
+		FourmilieresVues vueAutre = new FourmilieresVues();
+		vueAutre.setDist(100);
+		fourmilliereVoisines.add(vueAutre);
+		vueAutre = new FourmilieresVues();
+		vueAutre.setDist(20);
+		fourmilliereVoisines.add(vueAutre);
+		vueAutre = new FourmilieresVues();
+		vueAutre.setDist(30);
+		fourmilliereVoisines.add(vueAutre);
+		f.setFourmilliereVoisines(fourmilliereVoisines);
+		
+		assertNull(f.getFourmiliereAmie());
+	}
 }
