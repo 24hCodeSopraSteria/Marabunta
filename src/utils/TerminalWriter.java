@@ -28,4 +28,10 @@ public class TerminalWriter {
 		}
 		return TerminalWriter.instance;
 	}
+
+	public List<String> getCommandes() {
+		return commandes;
+	}
+	
+	
 }
