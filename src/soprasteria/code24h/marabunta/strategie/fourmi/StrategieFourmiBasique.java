@@ -21,6 +21,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 	public void cogite(Fourmi fourmi) {
 		List<Nourriture> nourritures= fourmi.getNourritureAProximite();
 		Integer[] memoireFourmi = fourmi.getMemoire();
+		System.out.println(": memoireFourmi " + memoireFourmi[0] + " | " + memoireFourmi[1]);
 
 		// gestion du cycle
 		int cptCycle = memoireFourmi[0]++;
