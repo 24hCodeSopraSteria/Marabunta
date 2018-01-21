@@ -90,7 +90,16 @@ public class Fourmi {
 	public FourmilieresVues getFourmiliereAmie() {
 		List<FourmilieresVues> fourmilieresAmies = fourmilliereVoisines.stream().filter(f -> f.isFriend()).collect(Collectors.toList());
 		if(!fourmilieresAmies.isEmpty()) {
-			return fourmilieresAmies.get(0);
+			// trouvons la plus proche
+			FourmilieresVues fourmiliereProche = fourmilieresAmies.get(0);
+			for(int i = 1; i < fourmilieresAmies.size(); i++) {
+				int distMin = fourmiliereProche.getDist();
+				int dist = fourmilieresAmies.get(i).getDist();
+				if(dist < distMin) {
+					fourmiliereProche = fourmilieresAmies.get(i);
+				}
+			}
+			return fourmiliereProche;
 		}
 		return null;
 	}
