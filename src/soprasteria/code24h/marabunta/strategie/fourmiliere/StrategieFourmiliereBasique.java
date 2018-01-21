@@ -38,13 +38,13 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 			return true;
 		}
 		memoire[2]++;
-		if(memoire[2] >= 255) {
+		if(memoire[2] >= 100) {
+			memoire[0]--;
 			memoire[2] = 0;
 			actionsFourmiliere.SetMemory(memoire);
 			actionsFourmiliere.AntNew(TypeFourmi.EXPLORATRICE_BASIQUE);
 		}
 		actionsFourmiliere.SetMemory(memoire);
-
 		actionsFourmiliere.sendActions();
 		return true;
 	}
