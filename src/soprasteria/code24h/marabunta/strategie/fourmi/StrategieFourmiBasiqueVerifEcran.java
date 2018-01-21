@@ -9,7 +9,7 @@ import soprasteria.code24h.marabunta.communication.fourmis.ActionsFourmis;
 import soprasteria.code24h.marabunta.informations.fourmi.Fourmi;
 import soprasteria.code24h.marabunta.informations.fourmi.FourmilieresVues;
 import soprasteria.code24h.marabunta.informations.fourmi.Nourriture;
-import soprasteria.code24h.marabunta.strategie.StrategieConfig;
+import soprasteria.code24h.marabunta.strategie.StrategieConfigVerifEcran;
 
 public class StrategieFourmiBasiqueVerifEcran implements StrategieFourmi {
 
@@ -24,7 +24,7 @@ public class StrategieFourmiBasiqueVerifEcran implements StrategieFourmi {
 		int cptCycle = memoireFourmi[0];
 		actionsFourmi.SetMemory(++cptCycle, memoireFourmi[1]);
 		
-		if(cptCycle % StrategieConfig.CYCLE_PHEROMONE == 0) {
+		if(cptCycle % StrategieConfigVerifEcran.CYCLE_PHEROMONE == 0) {
 			actionsFourmi.PutPheromone(1);
 			return ;
 		} else {
