@@ -87,6 +87,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 				}
 			}
 			if (nourritureProche.getZone() == StrategieConfig.NEAR) {
+				System.out.println("Valeur memoire fourmi " + memoireFourmi[1]);
 				actionsFourmi.SetMemory(memoireFourmi[0], memoireFourmi[1] + 128);
 				actionsFourmi.Collect(nourritureProche.getId(), StrategieConfig.MAX_FOOD);
 				return ;
