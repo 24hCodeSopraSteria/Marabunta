@@ -7,5 +7,5 @@ public final class TypePheromone {
 	public static final int NOTHING = 0;
 	public static final int NOURRITURE_TROUVE = 1;
 	public static final int NOURRITURE_TERMINE = 2;
-	public static final int FOURMILIERE_TROUVE = 4;
+	public static final int FOURMILIERE_TROUVE = 3;
 }

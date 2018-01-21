@@ -9,6 +9,7 @@ import soprasteria.code24h.marabunta.communication.fourmis.ActionsFourmis;
 import soprasteria.code24h.marabunta.informations.fourmi.Fourmi;
 import soprasteria.code24h.marabunta.informations.fourmi.FourmilieresVues;
 import soprasteria.code24h.marabunta.informations.fourmi.Nourriture;
+import soprasteria.code24h.marabunta.informations.fourmi.Pheromone;
 import soprasteria.code24h.marabunta.strategie.StrategieConfig;
 
 public class StrategieFourmiBasique implements StrategieFourmi {
@@ -26,15 +27,12 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 			actionsFourmi.SetMemory(0, memoireFourmi[1]);
 			memoireFourmi[0] = 0;
 		}
-		if(cptCycle % StrategieConfig.CYCLE_PHEROMONE == 0) {
-			actionsFourmi.PutPheromone(memoireFourmi[1]);
-			return ;
-		}
 
 		if (memoireFourmi[1] == 1) {
 			// Retour au bercail
+
 			List<FourmilieresVues> fourmilieresAmis = fourmi.getFourmilliereVoisines().stream().filter(f -> f.isFriend()).collect(Collectors.toList());
-			if(fourmilieresAmis.size() > 1) {
+			if(!fourmilieresAmis.isEmpty()) {
 				// trouvons la plus proche
 				FourmilieresVues fourmiliereProche = fourmilieresAmis.get(0);
 				for(int i=1; i < fourmilieresAmis.size(); i++) {
@@ -45,24 +43,36 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 					}
 				}
 				actionsFourmi.MoveTo(fourmiliereProche.getId());		
-				return ;		
+				return ;
 			} // TODO : gérer changement type pheromone pour le retour
+			List<Pheromone> pheromones = fourmi.getPheromonesAProximite();
+			if(!pheromones.isEmpty()) {
+				// recherche pheromone de la fourmi
+				pheromones.get(0);
+			}
 		}
 
+		// Recherche de nourriture
+		if(cptCycle % StrategieConfig.CYCLE_PHEROMONE == 0) {
+			actionsFourmi.PutPheromone(memoireFourmi[1]);
+			return ;
+		}
 		if (!nourritures.isEmpty()) {
 
 			// Si il y a de la nourriture 
-			Nourriture nourritureProche = fourmi.nourritureLaPlusProche();
-			
-			if (nourritureProche != null && nourritureProche.getZone() == StrategieConfig.NEAR) {
+			Nourriture nourritureProche = nourritures.get(0);
+			for(int i = 1; i < nourritures.size(); i++) {
+				int dist = nourritures.get(i).getDist();
+				if(dist < nourritureProche.getDist() ) {
+					nourritureProche = nourritures.get(i);
+				}
+			}
+			if (nourritureProche.getZone() == StrategieConfig.NEAR) {
 				actionsFourmi.SetMemory(memoireFourmi[0], 1);
 				actionsFourmi.Collect(nourritureProche.getId(), StrategieConfig.MAX_FOOD);
 				return ;
 			}
-			
-			if (nourritureProche != null) {
-				actionsFourmi.MoveTo(nourritureProche.getId());	
-			}
+			actionsFourmi.MoveTo(nourritureProche.getId());
 		} else {
 			actionsFourmi.Explore();
 		}
