@@ -44,11 +44,22 @@ public class Pheromone {
 	}
 
 	public void setMSBtype(int msbType) {
-		if(msbType < 0 && msbType > 3) {
+		if(msbType < 0 || msbType > 3) {
 			throw new RuntimeException();
 		}
-		int typeActuel = (this.type << 24) >> 24;
+		int typeActuel = (this.type << 23) >> 23;
 		this.type = typeActuel + (msbType << 8);
+	}
+
+	public int getIdFourmi() {
+		return (this.type << 23) >> 23;
+	}
+
+	public void setIdFourmi(int idFourmi) {
+		if(idFourmi < 0 || idFourmi > 255) {
+			throw new RuntimeException();
+		}
+		this.type = (this.getMSBtype() << 8) + idFourmi;
 	}
 
 	public String toString() {

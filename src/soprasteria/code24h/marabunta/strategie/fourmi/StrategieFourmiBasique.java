@@ -10,6 +10,7 @@ import soprasteria.code24h.marabunta.informations.fourmi.Fourmi;
 import soprasteria.code24h.marabunta.informations.fourmi.FourmilieresVues;
 import soprasteria.code24h.marabunta.informations.fourmi.Nourriture;
 import soprasteria.code24h.marabunta.informations.fourmi.Pheromone;
+import soprasteria.code24h.marabunta.informations.fourmi.TypePheromone;
 import soprasteria.code24h.marabunta.strategie.StrategieConfig;
 
 public class StrategieFourmiBasique implements StrategieFourmi {
@@ -28,8 +29,8 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 			memoireFourmi[0] = 0;
 		}
 
+		// Retour au bercail
 		if (memoireFourmi[1] == 1) {
-			// Retour au bercail
 			FourmilieresVues fourmilieresAmie = fourmi.getFourmiliereAmie();
 			if(fourmilieresAmie != null) {
 				actionsFourmi.MoveTo(fourmilieresAmie.getId());		
@@ -38,13 +39,32 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 			List<Pheromone> pheromones = fourmi.getPheromonesAProximite();
 			if(!pheromones.isEmpty()) {
 				// recherche pheromone de la fourmi
-				pheromones.get(0);
+				Pheromone pheromoneSelect = null;
+				for(int i = 1; i < pheromones.size(); i++) {
+					Pheromone pheromone = pheromones.get(i);
+					if(pheromone.getIdFourmi() == memoireFourmi[1]) {
+						if(pheromoneSelect == null && pheromone.getMSBtype() == TypePheromone.NOTHING) {
+							pheromoneSelect = pheromone;
+						} else if(pheromoneSelect.getDist() > pheromone.getDist() && pheromone.getMSBtype() == TypePheromone.NOTHING){
+							pheromoneSelect = pheromone;
+						}
+					}
+				}
+				if(pheromoneSelect != null) {
+					if(pheromoneSelect.zone == StrategieConfig.NEAR) {
+						actionsFourmi.ChangePheromone(pheromoneSelect.id, TypePheromone.NOURRITURE_TROUVE);
+					} else {
+						actionsFourmi.MoveTo(pheromoneSelect.id);
+					}
+					return ;
+				}
 			}
 		}
 
 		// Recherche de nourriture
 		if(cptCycle % StrategieConfig.CYCLE_PHEROMONE == 0) {
-			actionsFourmi.PutPheromone(memoireFourmi[1]);
+			// A ameliorer selon etat fourmi
+			actionsFourmi.PutPheromone(getTypePheromone(TypePheromone.NOTHING, memoireFourmi[1]));
 			return ;
 		}
 		if (!nourritures.isEmpty()) {
@@ -66,6 +86,13 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 		} else {
 			actionsFourmi.Explore();
 		}
+	}
+
+	private Integer getTypePheromone(Integer typePheromone, Integer idFourmi) {
+		if(typePheromone < 0 || typePheromone > 3 || idFourmi > 255 || idFourmi < 0) {
+			throw new RuntimeException();
+		}
+		return (typePheromone << 8) + idFourmi;
 	}
 
 }
