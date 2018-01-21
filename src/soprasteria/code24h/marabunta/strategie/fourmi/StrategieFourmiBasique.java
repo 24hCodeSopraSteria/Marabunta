@@ -26,7 +26,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 		// gestion du cycle
 		int cptCycle = ++memoireFourmi[0];
 		if(cptCycle >= StrategieConfig.MAX_CPT) {
-			cptCycle = 0;
+			cptCycle = 1;
 			memoireFourmi[0] = 0;
 		}
 		actionsFourmi.SetMemory(cptCycle, memoireFourmi[1]);
