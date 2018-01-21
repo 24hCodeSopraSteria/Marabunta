@@ -31,7 +31,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 		}
 		actionsFourmi.SetMemory(cptCycle, memoireFourmi[1]);
 		// Retour au bercail
-		if ((memoireFourmi[1] << 7) != 0) {
+		if ((memoireFourmi[1] >> 7) == 1) {
 			System.out.println(": Retour au bercail");
 			FourmilieresVues fourmilieresAmie = fourmi.getFourmiliereAmie();
 			if(fourmilieresAmie != null) {
@@ -81,7 +81,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 				}
 			}
 			if (nourritureProche.getZone() == StrategieConfig.NEAR) {
-				actionsFourmi.SetMemory(memoireFourmi[0], 1);
+				actionsFourmi.SetMemory(memoireFourmi[0], memoireFourmi[1] + 128);
 				actionsFourmi.Collect(nourritureProche.getId(), StrategieConfig.MAX_FOOD);
 				return ;
 			}
