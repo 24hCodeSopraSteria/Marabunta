@@ -23,6 +23,13 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 		Integer[] memoireFourmi = fourmi.getMemoire();
 		System.out.println(": memoireFourmi " + memoireFourmi[0] + " | " + memoireFourmi[1]);
 
+		if (fourmi.getStamina() < 4000) {
+			actionsFourmi.suicide();
+			actionsFourmi.sendActions();
+			return true;
+		}
+		
+		
 		// gestion du cycle
 		int cptCycle = ++memoireFourmi[0];
 		if(cptCycle >= StrategieConfig.MAX_CPT) {
