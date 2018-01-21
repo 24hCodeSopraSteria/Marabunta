@@ -35,6 +35,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 			System.out.println(": Retour au bercail");
 			FourmilieresVues fourmilieresAmie = fourmi.getFourmiliereAmie();
 			if(fourmilieresAmie != null) {
+				System.out.println(": Fourmiliere amie trouvé");
 				actionsFourmi.MoveTo(fourmilieresAmie.getId());		
 				return ;
 			} // TODO : gérer changement type pheromone pour le retour
@@ -44,7 +45,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 				Pheromone pheromoneSelect = null;
 				for(int i = 1; i < pheromones.size(); i++) {
 					Pheromone pheromone = pheromones.get(i);
-					if(pheromone.getIdFourmi() == memoireFourmi[1]) {
+					if(pheromone.getIdFourmi() == (memoireFourmi[1] >> 7)) {
 						if(pheromoneSelect == null && pheromone.getMSBtype() == TypePheromone.NOTHING) {
 							pheromoneSelect = pheromone;
 						} else if(pheromoneSelect.getDist() > pheromone.getDist() && pheromone.getMSBtype() == TypePheromone.NOTHING){
@@ -54,12 +55,17 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 				}
 				if(pheromoneSelect != null) {
 					if(pheromoneSelect.zone == StrategieConfig.NEAR) {
+						System.out.println(": Changement type pheromone");
 						actionsFourmi.ChangePheromone(pheromoneSelect.id, TypePheromone.NOURRITURE_TROUVE);
 					} else {
+						System.out.println(": Deplacement vers le pheromone " + pheromoneSelect.getId());
 						actionsFourmi.MoveTo(pheromoneSelect.id);
 					}
 					return ;
 				}
+			} else {
+				actionsFourmi.suicide();
+				return ;
 			}
 		}
 
