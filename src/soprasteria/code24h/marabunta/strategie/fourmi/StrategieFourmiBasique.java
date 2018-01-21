@@ -92,7 +92,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 				}
 			}
 			if (nourritureProche.getZone().contains(StrategieConfig.NEAR)) {
-				System.out.println("zone ok");
+				System.out.println(": zone ok");
 				actionsFourmi.SetMemory(memoireFourmi[0], memoireFourmi[1] + 128);
 				actionsFourmi.Collect(nourritureProche.getId(), StrategieConfig.MAX_FOOD);
 				return true;
