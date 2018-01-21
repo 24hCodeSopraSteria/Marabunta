@@ -25,14 +25,14 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 
 		// gestion du cycle
 		int cptCycle = ++memoireFourmi[0];
-		System.out.println(": cpt " + cptCycle);
 		if(cptCycle >= StrategieConfig.MAX_CPT) {
 			cptCycle = 0;
 			memoireFourmi[0] = 0;
 		}
-		actionsFourmi.SetMemory(0, memoireFourmi[1]);
+		actionsFourmi.SetMemory(cptCycle, memoireFourmi[1]);
 		// Retour au bercail
 		if ((memoireFourmi[1] << 7) != 0) {
+			System.out.println(": Retour au bercail");
 			FourmilieresVues fourmilieresAmie = fourmi.getFourmiliereAmie();
 			if(fourmilieresAmie != null) {
 				actionsFourmi.MoveTo(fourmilieresAmie.getId());		
