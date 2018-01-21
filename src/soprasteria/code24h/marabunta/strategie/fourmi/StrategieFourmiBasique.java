@@ -36,7 +36,11 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 			FourmilieresVues fourmilieresAmie = fourmi.getFourmiliereAmie();
 			if(fourmilieresAmie != null) {
 				System.out.println(": Fourmiliere amie trouvé");
-				actionsFourmi.MoveTo(fourmilieresAmie.getId());		
+				if(fourmilieresAmie.zone.contains(StrategieConfig.NEAR)) {
+					actionsFourmi.Nest(fourmilieresAmie.getId());
+					return true;
+				}
+				actionsFourmi.MoveTo(fourmilieresAmie.getId());
 				return true;
 			} // TODO : gérer changement type pheromone pour le retour
 			List<Pheromone> pheromones = fourmi.getPheromonesAProximite();
@@ -45,18 +49,22 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 				Pheromone pheromoneSelect = null;
 				for(int i = 1; i < pheromones.size(); i++) {
 					Pheromone pheromone = pheromones.get(i);
-					if(pheromone.getIdFourmi() == (memoireFourmi[1] >> 7)) {
+					if(pheromone.getIdFourmi() == (memoireFourmi[1] - 128)) {
+						System.out.println(": MSB " + pheromone.getMSBtype());
 						if(pheromoneSelect == null && pheromone.getMSBtype() == TypePheromone.NOTHING) {
 							pheromoneSelect = pheromone;
+							System.out.println(": phe select " + pheromoneSelect.getId());
 						} else if(pheromoneSelect.getDist() > pheromone.getDist() && pheromone.getMSBtype() == TypePheromone.NOTHING){
 							pheromoneSelect = pheromone;
+							System.out.println(": phe select " + pheromoneSelect.getId());
 						}
 					}
 				}
+				
 				if(pheromoneSelect != null) {
-					if(pheromoneSelect.zone == StrategieConfig.NEAR) {
+					if(pheromoneSelect.getZone().contains(StrategieConfig.NEAR)) {
 						System.out.println(": Changement type pheromone");
-						actionsFourmi.ChangePheromone(pheromoneSelect.id, TypePheromone.NOURRITURE_TROUVE);
+						actionsFourmi.ChangePheromone(pheromoneSelect.id, memoireFourmi[1] + 128);
 					} else {
 						System.out.println(": Deplacement vers le pheromone " + pheromoneSelect.getId());
 						actionsFourmi.MoveTo(pheromoneSelect.id);
@@ -65,6 +73,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 				}
 			} else {
 				actionsFourmi.suicide();
+				actionsFourmi.sendActions();
 				return true;
 			}
 		}
@@ -86,8 +95,8 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 					nourritureProche = nourritures.get(i);
 				}
 			}
-			if (nourritureProche.getZone() == StrategieConfig.NEAR) {
-				System.out.println("Valeur memoire fourmi " + memoireFourmi[1]);
+			if (nourritureProche.getZone().contains(StrategieConfig.NEAR)) {
+				System.out.println(": zone ok");
 				actionsFourmi.SetMemory(memoireFourmi[0], memoireFourmi[1] + 128);
 				actionsFourmi.Collect(nourritureProche.getId(), StrategieConfig.MAX_FOOD);
 				return true;

@@ -59,7 +59,7 @@ public class ActionsFourmis {
 	 * @param type 	Type de phéromone (0 à 1023)
 	 */
 	public void ChangePheromone(Integer id, Integer type) {
-		this.tw.add("CHANGE_PHEROMONE " + type);
+		this.tw.add("CHANGE_PHEROMONE " + id + " " + type);
 		this.sendActions();
 	}
 	
