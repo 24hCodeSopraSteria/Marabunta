@@ -10,12 +10,12 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 	@Override
 	public void cogite(Fourmiliere fourmiliere) {
 		int fourmisInterieur = fourmiliere.getNbFourmis();
-		Integer fourmisExterieur = fourmiliere.getMemories()[0];
-		int cptFourmis = fourmiliere.getMemories()[1];
-		System.out.println(": > interieur : " + fourmisInterieur + " exterieur : " + fourmisExterieur);
-		if(fourmisExterieur < 20 && fourmisInterieur > 0) {
-			actionsFourmiliere.SetMemory(++fourmisExterieur);
-			actionsFourmiliere.AntOut(0, 5, 0, cptFourmis++);
+		Integer[] memoire = fourmiliere.getMemories();
+		System.out.println(": > interieur : " + fourmisInterieur + " exterieur : " + memoire[0]);
+		if(memoire[0] < 20 && fourmisInterieur > 0) {
+			memoire[0]++;
+			actionsFourmiliere.SetMemory(memoire);
+			actionsFourmiliere.AntOut(0, 5, 0, memoire[1]++);
 		} else if (fourmisInterieur == 0) {
 			actionsFourmiliere.AntNew(0);
 		}

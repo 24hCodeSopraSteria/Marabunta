@@ -40,22 +40,13 @@ public class ActionsFourmiliere {
 	 * @param memory... Nombre compris entre 0 et 255 (max 20 parametres)
 	 * @throws RuntimeException Si y'a plus de 20 paramètres de passés ou valeur invalide
 	 */
-	public void SetMemory(Integer... memory) {
-		if(memory.length > 20) {
+	public void SetMemory(Integer[] memory) {
+		if(memory.length != 20) {
 			throw new RuntimeException();
 		}
 		String str = "";
-		int i;
-		for(i = 0; i < memory.length; i++) {
-			if(memory[i] > 255 || memory[i] < 0) {
-				throw new RuntimeException();
-			}
+		for(int i = 0; i < memory.length; i++) {
 			str += memory[i] + " ";
-		}
-		if(i < 20) {
-			for(;i < 20; i++) {
-				str += "0 ";
-			}
 		}
 		this.tw.add("SET_MEMORY " + str);
 	}
