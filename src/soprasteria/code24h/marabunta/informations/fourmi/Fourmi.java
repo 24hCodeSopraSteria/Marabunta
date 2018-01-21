@@ -121,4 +121,18 @@ public class Fourmi {
 		}
 		return nourritureProche;
 	}
+	
+	public Pheromone pheromoneLaPlusProche() {
+		Pheromone phero = null;
+		if(!pheromonesAProximite.isEmpty()) {
+			phero = pheromonesAProximite.get(0);
+			for(int i = 1; i < pheromonesAProximite.size(); i++) {
+				int dist = pheromonesAProximite.get(i).getDist();
+				if(dist < phero.getDist() ) {
+					phero = pheromonesAProximite.get(i);
+				}
+			}
+		}
+		return phero;
+	}
 }

@@ -99,7 +99,43 @@ public class FourmiTest {
 		vueAutre.setDist(30);
 		fourmilliereVoisines.add(vueAutre);
 		f.setFourmilliereVoisines(fourmilliereVoisines);
-		
+
 		assertNull(f.getFourmiliereAmie());
+	}
+	
+	@Test
+	public void testPheromoneLaPlusProche() {
+		Fourmi f = new Fourmi();
+		List<Pheromone> pheros = new ArrayList<>();
+		Pheromone expected = new Pheromone();
+		expected.setDist(2);
+		Pheromone other = new Pheromone();
+		other.setDist(4);
+		pheros.add(other);
+		pheros.add(expected);
+		other = new Pheromone();
+		other.setDist(3);
+		pheros.add(other);
+		
+		f.setPheromonesAProximite(pheros);
+		assertTrue(expected == f.pheromoneLaPlusProche());
+	}
+	
+	@Test
+	public void testPheromoneLaPlusProcheOnePheromone() {
+		Fourmi f = new Fourmi();
+		List<Pheromone> pheros = new ArrayList<>();
+		Pheromone expected = new Pheromone();
+		expected.setDist(2);
+		pheros.add(expected);
+		
+		f.setPheromonesAProximite(pheros);
+		assertTrue(expected == f.pheromoneLaPlusProche());
+	}
+	
+	@Test
+	public void testPheromoneLaPlusProcheNoPheromone() {
+		Fourmi f = new Fourmi();
+		assertNull(f.pheromoneLaPlusProche());
 	}
 }
