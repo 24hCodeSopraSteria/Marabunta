@@ -14,17 +14,17 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 		Integer[] memoire = fourmiliere.getMemories();
 		// System.out.println(": > interieur : " + fourmisInterieur + " exterieur : " + memoire[0]);
 		if (fourmisInterieur == 0) {
-			if(memoire[2] < 120) {
+			if(memoire[2] < 250) {
 				memoire[2]++;
 			} else {
 				memoire[3]++;
-				memoire[3] %= 120;				
+				memoire[3] %= 250;				
 			}
 			actionsFourmiliere.SetMemory(memoire);
 			if(memoire[3] == 0) {
 				actionsFourmiliere.AntNew(TypeFourmi.EXPLORATRICE_BASIQUE);
+				return true;
 			}
-			return true;
 		}
 		if(memoire[0] < 5 && fourmisInterieur > 0) {
 			memoire[0]++;
