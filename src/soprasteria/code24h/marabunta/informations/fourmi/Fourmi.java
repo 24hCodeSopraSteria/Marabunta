@@ -154,4 +154,23 @@ public class Fourmi {
 		}
 		return pheroConserv;
 	}
+
+	/**
+	 * Recherche la phéromone la plus puissante d'un type particulier.
+	 * @param typePhero le type de phéromone recherché.
+	 * @return la phéromone la plus puissante du type recherché ou null s'il n'y en a pas.
+	 */
+	public Pheromone pheromoneLaPlusPuissante(Integer typePhero) {
+		Pheromone pheroConserv = null;
+		for(Pheromone phero : pheromonesAProximite) {
+			if(phero.getType().equals(typePhero)) {
+				if(pheroConserv == null) {
+					pheroConserv = phero;
+				} else if(pheroConserv.getPersistance() < phero.getPersistance()){
+					pheroConserv = phero;
+				}
+			}
+		}
+		return pheroConserv;
+	}
 }
