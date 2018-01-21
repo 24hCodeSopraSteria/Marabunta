@@ -5,6 +5,6 @@ public final class TypeFourmi {
 		throw new RuntimeException("Interdit");
 	}
 	
-	public static final int EXPLORATRICE_BASIQUE = 1;
+	public static final int EXPLORATRICE_BASIQUE = 0;
 	public static final int RECOLTEUSE = 10;
 }

@@ -1,6 +1,5 @@
 package utils;
 
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,8 +10,6 @@ public class TerminalReader {
 	public static TerminalReader me = null;
 
 	private TerminalReader(){};
-	
-	
 	public List<String> readAll() {
 		List<String> listeDesCommandes = new ArrayList<String>();
 		boolean finDeReception = false;

@@ -28,13 +28,14 @@ public class FourmiliereReader extends MarabuntaReader<Fourmiliere>{
 				}
 				break;
 			case "ANT_COUNT" :
-				fourmiliere.setNbFourmis(Integer.parseInt(splitCmd[2]));
+				fourmiliere.setNbFourmisParType(Integer.parseInt(splitCmd[2]), Integer.parseInt(splitCmd[1]));
 				break;
 			case "ANT_IN" :
 				Fourmi f = new Fourmi();
 				f.setType(Integer.parseInt(splitCmd[1]));
-				f.getMemoire()[0] = Integer.parseInt(splitCmd[1]);
-				f.getMemoire()[1] = Integer.parseInt(splitCmd[2]);
+				f.getMemoire()[0] = Integer.parseInt(splitCmd[2]);
+				f.getMemoire()[1] = Integer.parseInt(splitCmd[3]);
+				fourmiliere.getFourmiIn().add(f);
 				break;
 			default :
 				// TODO log
