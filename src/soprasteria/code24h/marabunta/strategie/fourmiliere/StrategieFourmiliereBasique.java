@@ -12,7 +12,7 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 		int fourmisInterieur = fourmiliere.getNbFourmis();
 		Integer[] memoire = fourmiliere.getMemories();
 		System.out.println(": > interieur : " + fourmisInterieur + " exterieur : " + memoire[0]);
-		if(memoire[0] < 20 && fourmisInterieur > 0) {
+		if(memoire[0] < 50 && fourmisInterieur > 0) {
 			memoire[0]++;
 			int id = memoire[1]++;
 			actionsFourmiliere.SetMemory(memoire);
