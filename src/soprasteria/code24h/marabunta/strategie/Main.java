@@ -28,8 +28,6 @@ public class Main {
 		StrategieFourmi stratFourmiBasique = new StrategieFourmiBasique();
 		StrategieFourmi stratFourmiRecolt = new StrategieFourmiRecolteuse();
 		
-		int run = 0;
-		
 		while(tr.notFinished)
 		{
 			// Obtention de toutes les commandes d'entree
@@ -44,6 +42,7 @@ public class Main {
 			if(fourmiliere != null) {
 				// La fourmiliere est instancié
 				stratFourmiliere.cogite(fourmiliere);
+				continue;
 			} else {
 				Fourmi fourmi = fourmiReader.read(cmds);
 				// System.out.println(": " + fourmi);
@@ -59,8 +58,6 @@ public class Main {
 					}
 				}
 			}
-			
-			run++;
 		}
 		
 		

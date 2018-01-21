@@ -11,8 +11,6 @@ public class TerminalReader {
 	public static TerminalReader me = null;
 
 	private TerminalReader(){};
-	
-	
 	public List<String> readAll() {
 		List<String> listeDesCommandes = new ArrayList<String>();
 		boolean finDeReception = false;
