@@ -23,14 +23,14 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 		Integer[] memoireFourmi = fourmi.getMemoire();
 
 		// gestion du cycle
-		int cptCycle = memoireFourmi[0];
+		int cptCycle = memoireFourmi[0]++;
 		if(cptCycle >= StrategieConfig.MAX_CPT) {
-			actionsFourmi.SetMemory(0, memoireFourmi[1]);
+			cptCycle = 0;
 			memoireFourmi[0] = 0;
 		}
-
+		actionsFourmi.SetMemory(0, memoireFourmi[1]);
 		// Retour au bercail
-		if (memoireFourmi[1] == 1) {
+		if ((memoireFourmi[1] << 7) != 0) {
 			FourmilieresVues fourmilieresAmie = fourmi.getFourmiliereAmie();
 			if(fourmilieresAmie != null) {
 				actionsFourmi.MoveTo(fourmilieresAmie.getId());		
@@ -83,9 +83,8 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 				return ;
 			}
 			actionsFourmi.MoveTo(nourritureProche.getId());
-		} else {
-			actionsFourmi.Explore();
-		}
+		} 
+		actionsFourmi.Explore();
 	}
 
 	private Integer getTypePheromone(Integer typePheromone, Integer idFourmi) {
