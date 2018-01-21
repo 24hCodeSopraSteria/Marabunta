@@ -23,11 +23,13 @@ public class StrategieFourmiRecolteuse implements StrategieFourmi {
 	private final ActionsFourmis actionsFourmi;
 	private final StrategieFourmi stratRemontePiste;
 	private StrategieFourmi stratRemontePisteNourriture;
+	private StrategieFourmi stratSuivrePisteNourriture;
 	private StrategieFourmi stratSurvie;
 	
 	public StrategieFourmiRecolteuse(ActionsFourmis actionsFourmis) {
 		this.actionsFourmi = actionsFourmis;
 		this.stratRemontePiste = new StrategieFourmiRemonterPiste(actionsFourmis, Arrays.asList(TypePheromone.NOTHING));
+		this.stratSuivrePisteNourriture = new StrategieFourmiSuivrePiste(actionsFourmis, Arrays.asList(TypePheromone.NOURRITURE_TROUVE));
 		this.stratRemontePisteNourriture = new StrategieFourmiRemonterPiste(actionsFourmis, Arrays.asList(TypePheromone.NOURRITURE_TROUVE));
 		this.stratSurvie = new StrategieFourmiStaminaSurvi(actionsFourmis);
 	}
@@ -48,8 +50,13 @@ public class StrategieFourmiRecolteuse implements StrategieFourmi {
 			if(fourmiliereVue != null) {
 				this.actionsFourmi.MoveTo(fourmiliereVue.id);
 			} else if(IntegerBitFlagManipulator.checkFlag(memoires[0], SUIVRE_PISTE)) {
-				if(!stratRemontePiste.cogite(fourmi)) {
-					this.actionsFourmi.Explore();
+				Pheromone p = fourmi.pheromoneLaPlusProche();
+				if(StrategieConfig.NEAR.equals(p.getZone()) && TypePheromone.NOURRITURE_TROUVE == p.getType() && p.getPersistance() < 20) {
+					actionsFourmi.RechargePheromone(p.getId());
+				} else if(!stratSuivrePisteNourriture.cogite(fourmi)) {
+					if(!stratRemontePiste.cogite(fourmi)) {
+						this.actionsFourmi.Explore();
+					}
 				}
 			} else {
 				actionsFourmi.Explore();

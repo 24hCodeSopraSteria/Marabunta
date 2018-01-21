@@ -2,7 +2,9 @@ package soprasteria.code24h.marabunta.informations.fourmiliere;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import soprasteria.code24h.marabunta.informations.fourmi.Fourmi;
 
@@ -10,12 +12,14 @@ public class Fourmiliere {
 	private final Integer[] memories;
 	private BigInteger stock;
 	private Integer nbFourmis;
+	private final Map<Integer, Integer> nbFourmisParType;
 	private List<Fourmi> fourmiIn;
 	
 	public Fourmiliere() {
 		memories = new Integer[20];
 		stock = BigInteger.ZERO;
 		fourmiIn = new ArrayList<Fourmi>();
+		nbFourmisParType = new HashMap<>();
 		nbFourmis = 0;
 	}
 
@@ -61,6 +65,25 @@ public class Fourmiliere {
 		this.nbFourmis = nbFourmis;
 	}
 	
+	/**
+	 * @return le nombre de fourmi par type de fourmi
+	 */
+	public Integer getNbFourmisParType(Integer type) {
+		return nbFourmisParType.get(type);
+	}
+	
+	/**
+	 * @return le nombre de fourmi par type de fourmi
+	 */
+	public void setNbFourmisParType(Integer nbFourmis, Integer type) {
+		Integer nbOld = nbFourmisParType.get(type);
+		if(nbOld == null) {
+			nbOld = 0;
+		}
+		nbFourmisParType.put(type, nbFourmis);
+		this.nbFourmis += nbFourmis - nbOld;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder();
