@@ -1,3 +1,4 @@
+package soprasteria.code24h.marabunta.utils;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
