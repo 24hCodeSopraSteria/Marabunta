@@ -22,7 +22,9 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 			int id = memoire[1]++;
 			actionsFourmiliere.SetMemory(memoire);
 			actionsFourmiliere.AntOut(0, 0, 0, id);
+			return true;
 		}
+		actionsFourmiliere.sendActions();
 		return true;
 	}
 }
