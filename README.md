@@ -7,9 +7,9 @@
 ### Fourmilière
 
  0. Fourmis à l’extérieur
- 1. (non utilisé)
- 2. (non utilisé)
- 3. (non utilisé)
+ 1. Last Id fourmi
+ 2. Start compteur avec timer
+ 3. Compteur/timer creation fourmi
  4. (non utilisé)
  5. (non utilisé)
  6. (non utilisé)
