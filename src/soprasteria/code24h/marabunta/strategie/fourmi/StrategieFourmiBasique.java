@@ -71,7 +71,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 			return ;
 		}
 		if (!nourritures.isEmpty()) {
-
+			System.out.println(": bouffe trouvé");
 			// Si il y a de la nourriture 
 			Nourriture nourritureProche = nourritures.get(0);
 			for(int i = 1; i < nourritures.size(); i++) {
@@ -86,6 +86,7 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 				return ;
 			}
 			actionsFourmi.MoveTo(nourritureProche.getId());
+			return;
 		} 
 		actionsFourmi.Explore();
 	}
