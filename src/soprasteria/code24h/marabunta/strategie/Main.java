@@ -28,10 +28,10 @@ public class Main {
 		StrategieFourmi stratFourmiBasique = new StrategieFourmiBasique();
 		StrategieFourmi stratFourmiRecolt = new StrategieFourmiRecolteuse();
 		
-		while(tr.notFinished)
-		{
+		while(tr.notFinished) {
 			// Obtention de toutes les commandes d'entree
             List<String> cmds = tr.readAll();
+            
 			
 			Fourmiliere fourmiliere = fourmiliereReader.read(cmds);
 			if(fourmiliere != null) {
@@ -53,9 +53,5 @@ public class Main {
 				}
 			}
 		}
-		
-		
 	}
-	
-
 }

@@ -22,13 +22,15 @@ public class StrategieFourmiRecolteuse implements StrategieFourmi {
 	
 	private final ActionsFourmis actionsFourmi;
 	private final StrategieFourmi stratRemontePiste;
-	private StrategieFourmiSuivrePiste stratSuivrePiste;
+	private StrategieFourmi stratRemontePisteNourriture;
+	private StrategieFourmi stratSuivrePisteNourriture;
 	private StrategieFourmi stratSurvie;
 	
 	public StrategieFourmiRecolteuse(ActionsFourmis actionsFourmis) {
 		this.actionsFourmi = actionsFourmis;
 		this.stratRemontePiste = new StrategieFourmiRemonterPiste(actionsFourmis, Arrays.asList(TypePheromone.NOTHING));
-		this.stratSuivrePiste = new StrategieFourmiSuivrePiste(actionsFourmis, Arrays.asList(TypePheromone.NOURRITURE_TROUVE));
+		this.stratSuivrePisteNourriture = new StrategieFourmiSuivrePiste(actionsFourmis, Arrays.asList(TypePheromone.NOURRITURE_TROUVE));
+		this.stratRemontePisteNourriture = new StrategieFourmiRemonterPiste(actionsFourmis, Arrays.asList(TypePheromone.NOURRITURE_TROUVE));
 		this.stratSurvie = new StrategieFourmiStaminaSurvi(actionsFourmis);
 	}
 	
@@ -48,7 +50,14 @@ public class StrategieFourmiRecolteuse implements StrategieFourmi {
 			if(fourmiliereVue != null) {
 				this.actionsFourmi.MoveTo(fourmiliereVue.id);
 			} else if(IntegerBitFlagManipulator.checkFlag(memoires[0], SUIVRE_PISTE)) {
-				stratRemontePiste.cogite(fourmi);
+				Pheromone p = fourmi.pheromoneLaPlusProche();
+				if(StrategieConfig.NEAR.equals(p.getZone()) && TypePheromone.NOURRITURE_TROUVE == p.getType() && p.getPersistance() < 20) {
+					actionsFourmi.RechargePheromone(p.getId());
+				} else if(!stratSuivrePisteNourriture.cogite(fourmi)) {
+					if(!stratRemontePiste.cogite(fourmi)) {
+						this.actionsFourmi.Explore();
+					}
+				}
 			} else {
 				actionsFourmi.Explore();
 			}
@@ -68,7 +77,9 @@ public class StrategieFourmiRecolteuse implements StrategieFourmi {
 					actionsFourmi.MoveTo(nourriture.getId());
 				}
 			} else if(IntegerBitFlagManipulator.checkFlag(memoires[0], SUIVRE_PISTE)) {
-				stratSuivrePiste.cogite(fourmi);
+				if(!stratRemontePisteNourriture.cogite(fourmi)) {
+					actionsFourmi.Explore();
+				}
 			} else {
 				// Sinon chercher piste
 				Pheromone phero = fourmi.pheromoneLaMoinsPuissante(TypePheromone.NOURRITURE_TROUVE);
