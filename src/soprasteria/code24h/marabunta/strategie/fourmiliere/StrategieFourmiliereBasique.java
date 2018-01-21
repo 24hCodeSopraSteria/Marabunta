@@ -12,7 +12,7 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 	public boolean cogite(Fourmiliere fourmiliere) {
 		int fourmisInterieur = fourmiliere.getNbFourmis();
 		Integer[] memoire = fourmiliere.getMemories();
-		System.out.println(": > interieur : " + fourmisInterieur + " exterieur : " + memoire[0]);
+		// System.out.println(": > interieur : " + fourmisInterieur + " exterieur : " + memoire[0]);
 		if (fourmisInterieur == 0) {
 			actionsFourmiliere.AntNew(TypeFourmi.EXPLORATRICE_BASIQUE);
 			return true;

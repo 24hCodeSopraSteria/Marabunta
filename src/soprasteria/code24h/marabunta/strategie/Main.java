@@ -32,11 +32,6 @@ public class Main {
 		{
 			// Obtention de toutes les commandes d'entree
             List<String> cmds = tr.readAll();
-            
-            // affichage pour debug
-			for(String commandes : cmds) {
-				System.out.println(": > " + commandes);
-			}
 			
 			Fourmiliere fourmiliere = fourmiliereReader.read(cmds);
 			if(fourmiliere != null) {
@@ -45,7 +40,6 @@ public class Main {
 				continue;
 			} else {
 				Fourmi fourmi = fourmiReader.read(cmds);
-				// System.out.println(": " + fourmi);
 				if(fourmi != null) {
 					// traitement fourmi
 					switch(fourmi.getType()) {
