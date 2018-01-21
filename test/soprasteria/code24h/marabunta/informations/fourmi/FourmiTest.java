@@ -1,13 +1,13 @@
 package soprasteria.code24h.marabunta.informations.fourmi;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class FourmiTest {
+public class FourmiTest {
 
 	@Test
-	void testNourritureLaPlusProche() {
+	public void testNourritureLaPlusProche() {
 		Fourmi f = new Fourmi();
 		Nourriture n1 = new Nourriture();
 		n1.setDist(10);
@@ -24,7 +24,7 @@ class FourmiTest {
 	}
 	
 	@Test
-	void testNourritureLaPlusProche2() {
+	public void testNourritureLaPlusProche2() {
 		Fourmi f = new Fourmi();
 		Nourriture n1 = new Nourriture();
 		n1.setDist(300);

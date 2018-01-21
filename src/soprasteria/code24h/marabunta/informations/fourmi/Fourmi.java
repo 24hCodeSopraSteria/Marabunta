@@ -2,6 +2,7 @@ package soprasteria.code24h.marabunta.informations.fourmi;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Fourmi {
 	private Integer type;
@@ -80,6 +81,18 @@ public class Fourmi {
 	 */
 	public List<FourmisVues> getFourmisAProximite() {
 		return fourmisAProximite;
+	}
+	
+	/**
+	 * Donne la fourmiliere amie la plus proche.
+	 * @return la vue de la fourmiliere amie la plus proche ou null, si aucune n'est visible.
+	 */
+	public FourmilieresVues getFourmiliereAmie() {
+		List<FourmilieresVues> fourmilieresAmies = fourmilliereVoisines.stream().filter(f -> f.isFriend()).collect(Collectors.toList());
+		if(!fourmilieresAmies.isEmpty()) {
+			return fourmilieresAmies.get(0);
+		}
+		return null;
 	}
 	
 	public String toString() {
