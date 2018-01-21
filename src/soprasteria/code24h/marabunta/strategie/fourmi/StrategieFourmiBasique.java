@@ -30,19 +30,9 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 
 		if (memoireFourmi[1] == 1) {
 			// Retour au bercail
-
-			List<FourmilieresVues> fourmilieresAmis = fourmi.getFourmilliereVoisines().stream().filter(f -> f.isFriend()).collect(Collectors.toList());
-			if(!fourmilieresAmis.isEmpty()) {
-				// trouvons la plus proche
-				FourmilieresVues fourmiliereProche = fourmilieresAmis.get(0);
-				for(int i=1; i < fourmilieresAmis.size(); i++) {
-					int distMin = fourmiliereProche.getDist();
-					int dist = fourmilieresAmis.get(i).getDist();
-					if(dist < distMin) {
-						fourmiliereProche = fourmilieresAmis.get(i);
-					}
-				}
-				actionsFourmi.MoveTo(fourmiliereProche.getId());		
+			FourmilieresVues fourmilieresAmie = fourmi.getFourmiliereAmie();
+			if(fourmilieresAmie != null) {
+				actionsFourmi.MoveTo(fourmilieresAmie.getId());		
 				return ;
 			} // TODO : gérer changement type pheromone pour le retour
 			List<Pheromone> pheromones = fourmi.getPheromonesAProximite();
