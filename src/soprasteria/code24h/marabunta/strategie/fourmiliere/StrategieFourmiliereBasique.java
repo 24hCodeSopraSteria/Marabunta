@@ -27,7 +27,7 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 			actionsFourmiliere.AntNew(TypeFourmi.EXPLORATRICE_BASIQUE);
 			return true;
 		}
-		if(memoire[0] < 5 && fourmisInterieur > 0) {
+		if(memoire[0] < 10 && fourmisInterieur > 0) {
 			memoire[0]++;
 			int id = memoire[1]++;
 			if(id >= 127) {
