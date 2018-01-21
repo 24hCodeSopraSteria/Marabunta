@@ -23,11 +23,13 @@ public class StrategieFourmiRecolteuse implements StrategieFourmi {
 	private final ActionsFourmis actionsFourmi;
 	private final StrategieFourmi stratRemontePiste;
 	private StrategieFourmiSuivrePiste stratSuivrePiste;
+	private StrategieFourmi stratSurvie;
 	
 	public StrategieFourmiRecolteuse(ActionsFourmis actionsFourmis) {
 		this.actionsFourmi = actionsFourmis;
-		this.stratRemontePiste = new StrategieFourmiRemonterPiste(Arrays.asList(TypePheromone.NOTHING));
-		this.stratSuivrePiste = new StrategieFourmiSuivrePiste(Arrays.asList(TypePheromone.NOURRITURE_TROUVE));
+		this.stratRemontePiste = new StrategieFourmiRemonterPiste(actionsFourmis, Arrays.asList(TypePheromone.NOTHING));
+		this.stratSuivrePiste = new StrategieFourmiSuivrePiste(actionsFourmis, Arrays.asList(TypePheromone.NOURRITURE_TROUVE));
+		this.stratSurvie = new StrategieFourmiStaminaSurvi(actionsFourmis);
 	}
 	
 	public StrategieFourmiRecolteuse() {
@@ -35,7 +37,11 @@ public class StrategieFourmiRecolteuse implements StrategieFourmi {
 	}
 	
 	@Override
-	public void cogite(Fourmi fourmi) {
+	public boolean cogite(Fourmi fourmi) {
+		if(stratSurvie.cogite(fourmi)) {
+			// On a manger pour sauver la nourriture
+			return true;
+		}
 		Integer[] memoires = fourmi.getMemoire();
 		if(IntegerBitFlagManipulator.checkFlag(memoires[0], RENTRER)) {
 			FourmilieresVues fourmiliereVue = fourmi.getFourmiliereAmie();
@@ -73,6 +79,7 @@ public class StrategieFourmiRecolteuse implements StrategieFourmi {
 				}
 			}
 		}
+		return true;
 	}
 
 	/**
