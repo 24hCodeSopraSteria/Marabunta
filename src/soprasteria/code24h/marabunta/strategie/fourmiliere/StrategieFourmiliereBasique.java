@@ -20,6 +20,9 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 		if(memoire[0] < 5 && fourmisInterieur > 0) {
 			memoire[0]++;
 			int id = memoire[1]++;
+			if(id >= 127) {
+				memoire[1] = 0;
+			}
 			actionsFourmiliere.SetMemory(memoire);
 			actionsFourmiliere.AntOut(0, 0, 0, id);
 			return true;
