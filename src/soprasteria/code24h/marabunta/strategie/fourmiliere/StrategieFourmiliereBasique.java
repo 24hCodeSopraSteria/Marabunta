@@ -43,6 +43,7 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 			memoire[2] = 0;
 			actionsFourmiliere.SetMemory(memoire);
 			actionsFourmiliere.AntNew(TypeFourmi.EXPLORATRICE_BASIQUE);
+			return true;
 		}
 		actionsFourmiliere.SetMemory(memoire);
 		actionsFourmiliere.sendActions();
