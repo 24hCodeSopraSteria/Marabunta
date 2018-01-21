@@ -98,4 +98,18 @@ public class Fourmi {
 	public String toString() {
 		return "Fourmi (type: " + type + ", memoire: " + memoire[0] + ", " + memoire[1] + ", attaquee: " + attaquee + ", stamina: " + stamina + ", stock: " + stock + ", pheromonesAProximite: " + pheromonesAProximite + ", fourmisAProximite: " + fourmisAProximite + ", fourmilliereVoisines: " + fourmilliereVoisines + ", nourritureAProximite: " + nourritureAProximite + ")";
 	}
+	
+	public Nourriture nourritureLaPlusProche() {
+		Nourriture nourritureProche = null;
+		if (nourritureAProximite.size() > 0) {
+			nourritureProche = nourritureAProximite.get(0);
+			for(int i = 1; i < nourritureAProximite.size(); i++) {
+				int dist = nourritureAProximite.get(i).getDist();
+				if(dist < nourritureProche.getDist() ) {
+					nourritureProche = nourritureAProximite.get(i);
+				}
+			}
+		}
+		return nourritureProche;
+	}
 }
