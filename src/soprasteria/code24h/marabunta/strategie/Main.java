@@ -12,6 +12,7 @@ import soprasteria.code24h.marabunta.readers.fourmi.FourmiReader;
 import soprasteria.code24h.marabunta.readers.fourmiliere.FourmiliereReader;
 import soprasteria.code24h.marabunta.strategie.fourmi.StrategieFourmi;
 import soprasteria.code24h.marabunta.strategie.fourmi.StrategieFourmiBasique;
+import soprasteria.code24h.marabunta.strategie.fourmi.StrategieFourmiBasiqueVerifEcran;
 import soprasteria.code24h.marabunta.strategie.fourmiliere.StrategieFourmiliere;
 import soprasteria.code24h.marabunta.strategie.fourmiliere.StrategieFourmiliereBasique;
 
@@ -25,7 +26,7 @@ public class Main {
 		FourmiliereReader fourmiliereReader = new FourmiliereReader();
 		FourmiReader fourmiReader = new FourmiReader();
 		StrategieFourmiliere stratFourmiliere = new StrategieFourmiliereBasique();
-		StrategieFourmi stratFourmi = new StrategieFourmiBasique();
+		StrategieFourmi stratFourmi = new StrategieFourmiBasiqueVerifEcran();
 		
 		int run = 0;
 		
