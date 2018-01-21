@@ -48,7 +48,8 @@ public class ActionsFourmiliere {
 		for(int i = 0; i < memory.length; i++) {
 			str += memory[i] + " ";
 		}
-		this.tw.add("SET_MEMORY " + str);
+		
+		this.tw.add("SET_MEMORY " + str.trim());
 	}
 
 	public void sendActions() {

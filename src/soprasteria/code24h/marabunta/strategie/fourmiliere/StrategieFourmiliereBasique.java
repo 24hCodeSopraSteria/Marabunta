@@ -17,7 +17,7 @@ public class StrategieFourmiliereBasique implements StrategieFourmiliere {
 			memoire[0]++;
 			int id = memoire[1]++;
 			actionsFourmiliere.SetMemory(memoire);
-			actionsFourmiliere.AntOut(0, 5, 0, id);
+			actionsFourmiliere.AntOut(0, 0, 0, id);
 		} else if (fourmisInterieur == 0) {
 			actionsFourmiliere.AntNew(TypeFourmi.EXPLORATRICE_BASIQUE);
 		}
