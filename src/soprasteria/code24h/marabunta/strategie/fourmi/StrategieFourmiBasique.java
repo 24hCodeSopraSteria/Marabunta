@@ -21,7 +21,6 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 	public boolean cogite(Fourmi fourmi) {
 		List<Nourriture> nourritures= fourmi.getNourritureAProximite();
 		Integer[] memoireFourmi = fourmi.getMemoire();
-		System.out.println(": memoireFourmi " + memoireFourmi[0] + " | " + memoireFourmi[1]);
 
 		// gestion du cycle
 		int cptCycle = ++memoireFourmi[0];
@@ -35,7 +34,6 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 			System.out.println(": Retour au bercail");
 			FourmilieresVues fourmilieresAmie = fourmi.getFourmiliereAmie();
 			if(fourmilieresAmie != null) {
-				System.out.println(": Fourmiliere amie trouvé");
 				if(fourmilieresAmie.zone.contains(StrategieConfig.NEAR)) {
 					actionsFourmi.Nest(fourmilieresAmie.getId());
 					return true;
@@ -46,30 +44,23 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 			List<Pheromone> pheromones = fourmi.getPheromonesAProximite();
 			if(!pheromones.isEmpty()) {
 				// recherche pheromone de la fourmi
-				Pheromone pheromoneSelect = null;
+				Pheromone pheromoneSelect = pheromones.get(0);
 				for(int i = 1; i < pheromones.size(); i++) {
 					Pheromone pheromone = pheromones.get(i);
 					if(pheromone.getIdFourmi() == (memoireFourmi[1] - 128)) {
-						if(pheromoneSelect == null && pheromone.getMSBtype() == TypePheromone.NOTHING) {
-							pheromoneSelect = pheromone;
-							System.out.println(": phe select " + pheromoneSelect.getId());
-						} else if(pheromoneSelect.getPersistance() > pheromone.getPersistance() && pheromone.getMSBtype() == TypePheromone.NOTHING){
+						if(pheromoneSelect.getPersistance() > pheromone.getPersistance() && pheromone.getMSBtype() == TypePheromone.NOTHING){
 							pheromoneSelect = pheromone;
 							System.out.println(": phe select " + pheromoneSelect.getId());
 						}
 					}
 				}
 				
-				if(pheromoneSelect != null) {
-					if(pheromoneSelect.getZone().contains(StrategieConfig.NEAR)) {
-						System.out.println(": Changement type pheromone");
-						actionsFourmi.ChangePheromone(pheromoneSelect.id, memoireFourmi[1] + 128);
-					} else {
-						System.out.println(": Deplacement vers le pheromone " + pheromoneSelect.getId());
-						actionsFourmi.MoveTo(pheromoneSelect.id);
-					}
-					return true;
+				if(pheromoneSelect.getZone().contains(StrategieConfig.NEAR)) {
+					actionsFourmi.ChangePheromone(pheromoneSelect.id, memoireFourmi[1] + 128);
+				} else {
+					actionsFourmi.MoveTo(pheromoneSelect.id);
 				}
+				return true;
 			} else {
 				actionsFourmi.suicide();
 				actionsFourmi.sendActions();
@@ -80,12 +71,10 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 		// Recherche de nourriture
 		if(cptCycle % StrategieConfig.CYCLE_PHEROMONE == 0) {
 			// A ameliorer selon etat fourmi
-			System.out.println(": pheromone car " + cptCycle + "  ; " + cptCycle % StrategieConfig.CYCLE_PHEROMONE);
 			actionsFourmi.PutPheromone(getTypePheromone(TypePheromone.NOTHING, memoireFourmi[1]));
 			return true;
 		}
 		if (!nourritures.isEmpty()) {
-			System.out.println(": bouffe trouvé");
 			// Si il y a de la nourriture 
 			Nourriture nourritureProche = nourritures.get(0);
 			for(int i = 1; i < nourritures.size(); i++) {
@@ -95,7 +84,6 @@ public class StrategieFourmiBasique implements StrategieFourmi {
 				}
 			}
 			if (nourritureProche.getZone().contains(StrategieConfig.NEAR)) {
-				System.out.println(": zone ok");
 				actionsFourmi.SetMemory(memoireFourmi[0], memoireFourmi[1] + 128);
 				actionsFourmi.Collect(nourritureProche.getId(), StrategieConfig.MAX_FOOD);
 				return true;
