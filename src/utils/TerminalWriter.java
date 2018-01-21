@@ -10,11 +10,11 @@ public class TerminalWriter {
 	private TerminalWriter() {}
 
 	public void sendAll() {
+		String str = "";
 		for (String commande : commandes) {
-			System.out.print(commande);
-			System.out.print('\n');
+			str += commande + "\n";
 		}
-		System.out.print("END\n");
+		System.out.print(str + "END\n");
 		System.out.flush();
 		commandes.clear();
 	}
